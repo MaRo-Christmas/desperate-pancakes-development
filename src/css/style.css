@@ -1,0 +1,13 @@
+/* Utils styles */
+@import url('./utils/variables.css');
+@import url('./utils/normalize.css');
+@import url('./utils/reset.css');
+
+/* Common styles */
+@import url('./common/base.css');
+
+/* Reuse styles */
+/* @import url('./common/Ваша_назва */
+
+/* Components styles */
+/* @import url('./common/Ваша_назва */
