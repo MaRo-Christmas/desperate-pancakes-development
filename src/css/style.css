@@ -5,6 +5,7 @@
 
 /* Common styles */
 @import url('./common/base.css');
+@import url('./components/favorites.css')
 
 /* Reuse styles */
 /* @import url('./common/Ваша_назва */
