@@ -1,31 +1,24 @@
-
 import icons from '../images/icons.svg';
 
-// Функция для форматирования числа до одного знака после запятой
-function formatToSingleDecimal(num) {
-  return parseFloat(num).toFixed(1);
-}
-
-// Функция для приведения первой буквы к верхнему регистру
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-// Функция для отрисовки карточек из localStorage
-export function createExerciseCardsFromLocalStorage() {
-  const cards = JSON.parse(localStorage.getItem('favorites_exercises_ls_key')) || [];
-  if (cards.length === 0) {
-    const wrapperSecnd = document.getElementById('wrapper-secnd');
-    wrapperSecnd.innerHTML = `<li class="text-exer"><p>It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p></li>`;
+// Функція для створення карток із localStorage
+function createExerciseCardsFromLocalStorage() {
+  const favorites = JSON.parse(localStorage.getItem('favorites_ex_key')) || [];
+  const wrapperSecnd = document.getElementById('wrapper-secnd');
+
+  // Якщо немає улюблених вправ, показуємо повідомлення
+  if (favorites.length === 0) {
+    wrapperSecnd.innerHTML = '<li class="text-exer"><p>It appears that you havent added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p></li>';
     return;
   }
-  // Проверка, сколько карточек получено из localStorage
 
-
-  const cardsHtml = cards
-    .map(
-      ({ _id, name, bodyPart, target, rating, burnedCalories, time }) => `
-        <li class="exr-card fav-exr-card">
+  // Якщо вправи є, рендеримо їх
+    const cardsHtml = favorites.map(({ _id, name, bodyPart, target, burnedCalories, time }) =>
+    `
+    <li class="exr-card fav-exr-card">
           <div class="workout-title">
             <div class="workout-title-left fav-workout-title-left">
               <p class="workout-title-name">WORKOUT</p>
@@ -54,61 +47,38 @@ export function createExerciseCardsFromLocalStorage() {
             <p class="workout-stats-part"><span class="workout-stats-title">Body part: </span>${capitalizeFirstLetter(bodyPart)}</p>
             <p class="workout-stats-target"><span class="workout-stats-title">Target: </span>${capitalizeFirstLetter(target)}</p>
           </div>
-        </li>`
-    )
-    .join('');
+        </li>
+  `).join('');
 
-  // Вставляем новый HTML в контейнер
-  const wrapperSecnd = document.getElementById('wrapper-secnd');
-  if (wrapperSecnd) {
-    wrapperSecnd.innerHTML = cardsHtml;
-  }
+  // Вставляємо HTML карток у контейнер
+  wrapperSecnd.innerHTML = cardsHtml;
 }
 
-// Функция для удаления упражнения из localStorage и перерендеринга списка
-function removeFavoriteExercise(exerciseId, element) {
-  // Добавляем класс анимации
-  element.classList.add('animate-remove');
+// Функція для видалення вправи з localStorage
+function removeExerciseFromFavorites(exerciseId) {
+  // Отримуємо поточний список вправ із localStorage
+  let favorites = JSON.parse(localStorage.getItem('favorites_ex_key')) || [];
 
-  // Ждем окончания анимации перед удалением из localStorage
-  element.addEventListener('animationend', () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites_exercises_ls_key')) || [];
-    const updatedFavorites = favorites.filter(ex => ex._id !== exerciseId);
-    localStorage.setItem('favorites_exercises_ls_key', JSON.stringify(updatedFavorites));
+  // Фільтруємо список, видаляючи вправу за ID
+  favorites = favorites.filter(exercise => exercise._id !== exerciseId);
 
-    // Обновляем DOM после завершения анимации
-    createExerciseCardsFromLocalStorage();
-  }, { once: true }); // Событие срабатывает один раз
+  // Оновлюємо список в localStorage
+  localStorage.setItem('favorites_ex_key', JSON.stringify(favorites));
+
+  // Перерендеримо список вправ
+  createExerciseCardsFromLocalStorage();
 }
 
-// Обработчик для всех кнопок удаления
-document.addEventListener('DOMContentLoaded', () => {
-  const wrapperSecnd = document.getElementById('wrapper-secnd');
-  
-  const quoteElement = document.querySelector('.quote');
-  const authorElement = document.querySelector('.quote-author');
-
-  const storedQuote = localStorage.getItem('dailyQuote');
-  if (storedQuote) {
-      const parsedQuote = JSON.parse(storedQuote);
-      quoteElement.textContent = parsedQuote.quote;
-      authorElement.textContent = parsedQuote.author;
-  }
-
-
-  if (wrapperSecnd) {
-    wrapperSecnd.addEventListener('click', (event) => {
-      const trashBtn = event.target.closest('[data-modal]');
-      if (trashBtn) {
-        const exerciseId = trashBtn.getAttribute('data-modal');
-        const exerciseCard = trashBtn.closest('.fav-exr-card'); // родительский элемент карточки
-        removeFavoriteExercise(exerciseId, exerciseCard);
-      }
-    });
-
-    // Начальная отрисовка карточек из localStorage
-    createExerciseCardsFromLocalStorage();
-  }
+// Обробник подій для видалення вправи
+document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
+    // Перевіряємо, чи клікнув користувач по іконці "trash"
+    const trashIcon = event.target.closest('.trash-icon');
+    if (trashIcon) {
+        const exerciseId = trashIcon.getAttribute('data-modal'); // Отримуємо ID вправи
+        removeExerciseFromFavorites(exerciseId); // Видаляємо вправу
+    }
 });
+// Викликаємо функцію при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', createExerciseCardsFromLocalStorage);
 
-
+// модальне вікно при натисненні Start додати файл!
