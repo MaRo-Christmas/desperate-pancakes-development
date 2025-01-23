@@ -1,0 +1,29 @@
+.categories-cards-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-wrapper {
+  width: 335px;
+  height: 225px;
+}
+
+.card-text {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  color: #f4f4f4;
+  text-align: center;
+}
+
+.card-text h3 {
+  text-transform: capitalize;
+}
