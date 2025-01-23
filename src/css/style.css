@@ -7,8 +7,9 @@
 @import url('./common/base.css');
 
 /* Reuse styles */
-/* @import url('./common/Ваша_назва */
 
 /* Components styles */
+
 @import url('./components/hero.css');
 @import url(./utils/quote.css)
+
