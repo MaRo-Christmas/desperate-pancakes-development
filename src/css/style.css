@@ -11,3 +11,5 @@
 
 /* Components styles */
 /* @import url('./common/Ваша_назва */
+@import url('./common/header.css');
+@import url('./common/header-menu.css');
