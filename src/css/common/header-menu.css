@@ -59,10 +59,25 @@
     justify-content: flex-end;
     width: 100%;
   }
+
+  .menu-close-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+  }
   
   .menu-close-icon {
     stroke: var(--gray);
     margin: 20px;
+    stroke-width: 2;
+    stroke-linecap: round;
   }
   
   .menu-items {
