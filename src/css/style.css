@@ -9,3 +9,7 @@
 /* Reuse styles */
 
 /* Components styles */
+
+@import url('./components/hero.css');
+@import url(./utils/quote.css)
+
