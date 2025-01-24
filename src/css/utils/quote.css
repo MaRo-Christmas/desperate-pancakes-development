@@ -6,15 +6,16 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    /* margin: auto; */
+    margin: 80px auto;
     max-width: 375px;
+    align-items: center;
 
     @media screen and (min-width: 768px) {
         flex-direction: row;
         gap: 16px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1024px) {
         flex-direction: column;
         max-width: 500px;
     }
@@ -26,8 +27,7 @@
     border-radius: 20px;
     display: flex;
     gap: 18px;
-    max-width: 500px;
-    /* margin: 0 auto; */
+    width: 335px;
 }
 
 .quote-left-icon {
@@ -94,7 +94,7 @@
 }
 
 .motivation-image {
-    width: 500px;
+    width: 335px;
     height: auto;
     object-fit: cover;
     border-radius: 20px;
@@ -107,7 +107,7 @@
     display: flex;
     gap: 18px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    width: 335px;
     margin: 0px auto;
 }
 
@@ -162,7 +162,7 @@
         flex-wrap: wrap;
         gap: 32px;
         max-width: 800px;
-        margin: 0px 32px;
+        /* margin: 0px 32px; */
 
     }
 
@@ -185,28 +185,29 @@
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1024px) {
     .quote-container {
         flex-direction: column;
         flex-wrap: nowrap;
         gap: 32px;
-        max-width: none;
-        margin: 0 auto;
+        max-width: 444px;
+        margin-top: 40px;
         justify-content: center;
     }
 
     .quote-card {
         width: 100%;
+        /* margin: 0; */
     }
 
     .image-wrapper {
-        margin: 0;
-        width: 100%;
+        /* margin: 0; */
+        width: 444px;
     }
 
     .goal-card {
         width: 100%;
-        margin: 0;
+        /* margin: 0; */
         /* margin-right: auto; */
     }
 
@@ -230,7 +231,7 @@
         margin: 0px;
     }
 
-    @media only screen and (min-width: 1200px) {
+    @media only screen and (min-width: 1024px) {
         width: 44%;
     }
 }
@@ -245,7 +246,7 @@
         margin: 0px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1024px) {
         width: 44%;
     }
 }
@@ -267,7 +268,7 @@
         max-width: 800px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1024px) {
         max-width: 500px;
     }
 
