@@ -122,7 +122,7 @@ img {
   flex-direction: row;
   padding-bottom: 20px;
   align-items: center;
-  background-image: url("rating.svg");
+  background-image: url("../../images/rating.svg");
   background-repeat: no-repeat;
   position: relative;
 }
@@ -137,7 +137,7 @@ img {
 .modal-info-rating-stars-filled {
   position: absolute;
   height: 18px;
-  background-image: url("rating-filled.svg");
+  background-image: url("../../images/rating-filled.svg");
   background-repeat: no-repeat;
   top: 0;
   left: 0;
