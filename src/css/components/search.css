@@ -1,0 +1,65 @@
+/* Контейнер для пошуку */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 273px;
+    height: 48px;
+    border: 1px solid #242424;
+    border-radius: 30px;
+    padding: 0 15px; 
+    background-color: #ffffff;
+}
+
+/* Поле вводу */
+.search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+    color: #111111;
+}
+
+/* Кнопка пошуку */
+.search-button {
+    background: none;
+    border: none;
+    padding: 0; 
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Іконка пошуку */
+.search-icon {
+    width: 18px; 
+    height: 18px;
+    margin-left: -15px;
+    color: #111111;
+}
+#searchResults {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .exercise-item {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+  
+  
+  
