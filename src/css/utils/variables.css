@@ -1,15 +1,16 @@
 :root {
   font-family: "Montserrat", serif;
-  --animation-time: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
+  --black: #242424;
+  --gray: #f4f4f4;
+  --orange: #eea10c;
+  --border-color: rgba(36, 36, 36, .1);
+  --shadow: 0px 4px 4px 0px rgba(0, 0, 0, .25);
 
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    --black: #242424;
-    --gray: #f4f4f4;
-    --orange: #eea10c;
-
-  
-  }
+  --anim-duration: 250ms;
+  --anim-timing-function: cubic-bezier(.4, 0, .2, 1);
+}

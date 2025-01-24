@@ -10,7 +10,9 @@
 /* Reuse styles */
 
 /* Components styles */
-
+@import url('./common/header.css');
+@import url('./common/header-menu.css');
 @import url('./components/hero.css');
+@import url('./components/search.css');
 @import url(./utils/quote.css)
 
