@@ -5,10 +5,14 @@
 
 /* Common styles */
 @import url('./common/base.css');
+@import url('./components/favorites.css');
 
 /* Reuse styles */
-/* @import url('./common/Ваша_назва */
 
 /* Components styles */
-/* @import url('./common/Ваша_назва */
-@import url('./components/home-exercises.css')
+@import url('./common/header.css');
+@import url('./common/header-menu.css');
+@import url('./components/hero.css');
+@import url('./components/search.css');
+@import url('./utils/quote.css');
+@import url('./components/home-exercises.css');
