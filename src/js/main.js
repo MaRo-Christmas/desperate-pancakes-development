@@ -4,4 +4,4 @@ import './quote.js';
 import './search.js';
 
 
-import "./exercises-list";
+import "./category/exercises-list.js";

@@ -1,7 +1,5 @@
-// import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
-
 import { getExercises } from "../api/getExercises";
+
 let category = 'Muscles';
 
 window.onload = () => {
@@ -24,6 +22,10 @@ function handleClick(e) {
   if (!isBtn) return;
   
   category = e.target.dataset.action;
+
+  const btnsListAll = document.querySelectorAll(".category-btn");
+  btnsListAll.forEach(item => item.classList.remove('active'));
+  e.target.classList.add('active')
 
   getExercises(category, 1, 10).then((result) => {
     renderListOfCards(result.results);
@@ -74,17 +76,3 @@ function renderPagination(number) {
   paginationRef.insertAdjacentHTML("afterbegin", arr.join(''))
   paginationRef.firstChild.classList.add('active')
 }
-
-
-
-// paginationAll.forEach(link => {
-//   link.addEventListener('click', function (e) {
-//     // e.preventDefault(); // Prevent default link behavior
-
-//     // Remove 'active' class from all links
-//     paginationAll.forEach(link => link.classList.remove('active'));
-
-//     // Add 'active' class to the clicked link
-//     this.classList.add('active');
-//   });
-// });
