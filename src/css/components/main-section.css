@@ -1,0 +1,7 @@
+@media screen and (min-width: 1024px) {
+    .main-section {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: start;
+    }
+}

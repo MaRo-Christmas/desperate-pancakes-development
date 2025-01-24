@@ -20,38 +20,40 @@
       <!-- All partials -->
     
       <load src="partials/hero.html" />
-      <load src="partials/quote-home.html" />
+
 
       <!-- Search Section -->
-<div class="search-container">
-  <input
-    type="text"
-    class="search-input"
-    id="searchInput"
-    placeholder="Search"
-    aria-label="Search exercises"
-  />
-  <button class="search-button" id="searchButton" aria-label="Search">
-    <svg
-      class="search-icon"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#111"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <circle cx="11" cy="11" r="8"></circle>
-      <line x1="16" y1="16" x2="22" y2="22"></line>
-    </svg>
-  </button>
-</div>
-<!-- Result Search Section --> <!-- Цей розділ додав тільки для перевірки та наочної демонстрації -->
-<div id="searchResults"></div>
-<button id="loadMoreButton" style="display: none;">Load More</button>
-
-<load src="./partials/home-exercises.html" />
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          id="searchInput"
+          placeholder="Search"
+          aria-label="Search exercises"
+        />
+        <button class="search-button" id="searchButton" aria-label="Search">
+          <svg
+            class="search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="16" y1="16" x2="22" y2="22"></line>
+          </svg>
+        </button>
+      </div>
+      <!-- Result Search Section --> <!-- Цей розділ додав тільки для перевірки та наочної демонстрації -->
+      <div id="searchResults"></div>
+      <button id="loadMoreButton" style="display: none;">Load More</button>
+      <div class="main-section">
+        <load src="./partials/home-exercises.html" />
+        <load src="./partials/quote-home.html" />
+      </div>
       
     <!-- footer  -->
 
