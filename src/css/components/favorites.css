@@ -10,25 +10,26 @@
     font-weight: 400;
     margin-bottom: 20px;
 }
-/* /* .fav-wrapper {
+.fav-wrapper {
     display: flex;
     flex-direction: column;
     gap: 40px;
-} */
+} 
 
-/* @media screen and (min-width:1440px) {
+@media screen and (min-width:1440px) {
     .fav-wrapper {
-        display: grid;
+        display: flex;
+        flex-direction: row;
         grid-template-columns: 1.2fr 2fr;
     }
-} */
+} 
 /* .wrapper-first {
     display: flex;
     flex-direction: column;
     gap: 20px;
-} */
+} 
 
-/* @media screen and (min-width:767px) {
+@media screen and (min-width:767px) {
     .wrapper-first {
         flex-direction: row;
         flex-wrap: wrap;
@@ -171,12 +172,12 @@
 
 .trash-icon {
     cursor: pointer;
-    fill: #ff6b6b;
+    fill: #242424;
     transition: fill 0.3s ease;
 }
 
 .trash-icon:hover {
-    fill: #ff0000;
+    fill: #242424;
 }
 
 .workout-title-right {
