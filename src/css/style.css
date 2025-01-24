@@ -11,5 +11,6 @@
 /* Components styles */
 
 @import url('./components/hero.css');
+@import url('./components/search.css');
 @import url(./utils/quote.css)
 
