@@ -13,7 +13,8 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        // Пошук всіх HTML-файлів у src, включаючи вкладені папки
+        input: glob.sync('./src/**/*.html'),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -37,6 +38,7 @@ export default defineConfig(({ command }) => {
       outDir: '../dist',
       emptyOutDir: true,
     },
+
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
