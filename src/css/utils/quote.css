@@ -177,7 +177,7 @@
     } */
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1200px) {
     .quote-container {
         flex-direction: column;
         flex-wrap: nowrap;
@@ -229,7 +229,7 @@
         justify-content: space-between;
     }
 
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1200px) {
         max-width: 500px;
     }
 
@@ -266,7 +266,7 @@
         margin: 0px;
     }
 
-    @media only screen and (min-width: 1440px) {
+    @media only screen and (min-width: 1200px) {
         min-width: 200px;
         height: 141px;
     }
@@ -296,7 +296,7 @@
 
     }
 
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1200px) {
         min-width: 200px;
         max-width: none;
 
