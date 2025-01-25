@@ -16,7 +16,7 @@
     gap: 40px;
 } 
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width:1200px) {
     .fav-wrapper {
         display: flex;
         flex-direction: row;
@@ -70,7 +70,7 @@
     }
  }
 
- @media screen and (min-width:1440px) {
+ @media screen and (min-width:1200px) {
     .wrapper-secnd {
         height: 472px;
         overflow-y: auto;
@@ -93,7 +93,7 @@
     }
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width:1200px) {
     .text-exer {
         height: 390px;
         padding-top: 0;
@@ -121,7 +121,7 @@
 .fav-exr-card {
     height: 141px;
 
-    @media screen and (min-width:1440px) {
+    @media screen and (min-width:1200px) {
         width: 100%;
         max-width: none;
     }
@@ -147,7 +147,7 @@
     }
     
 }
-@media screen and (min-width:1440px) {
+@media screen and (min-width:1200px) {
     .exr-card {
         width: 50%;
         max-width: none;
