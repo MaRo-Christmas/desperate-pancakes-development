@@ -6,11 +6,17 @@
   margin-bottom: 20px;
 }
 
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
 .categories-btns-list {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-  margin-bottom: 20px;
 }
 
 .category-btn {
@@ -110,6 +116,12 @@
 }
 
 @media screen and (min-width: 768px) {
+  .filters-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .categories-cards-list {
     flex-direction: row;
     flex-wrap: wrap;
@@ -123,11 +135,18 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .card-wrapper img {
-    height: 100%;
+  .main-section-title {
+    position: absolute;
+    font-size: 44px;
+    line-height: 1.09;
+    letter-spacing: -0.02em;
   }
 
-  .categories-btns-list {
+  .filters-container {
     justify-content: flex-end;
+  }
+
+  .card-wrapper img {
+    height: 100%;
   }
 }
