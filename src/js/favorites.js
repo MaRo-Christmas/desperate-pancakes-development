@@ -54,30 +54,39 @@ function createExerciseCardsFromLocalStorage() {
   wrapperSecnd.innerHTML = cardsHtml;
 }
 
-// Функція для видалення вправи з localStorage
-function removeExerciseFromFavorites(exerciseId) {
-  // Отримуємо поточний список вправ із localStorage
-  let favEx = JSON.parse(localStorage.getItem('favorites')) || [];
+// Функція для видалення вправи з анімацією
+function removeExerciseFromFavoritesWithAnimation(exerciseId) {
+  const cardToDelete = document.querySelector(`.trash-icon[data-modal="${exerciseId}"]`).closest('.exr-card');
 
-  // Фільтруємо список, видаляючи вправу за ID
-  const favorites = favEx.filter(exercise => exercise._id !== exerciseId);
+  // Додаємо клас для анімації
+  cardToDelete.classList.add('fade-out');
 
-  // Оновлюємо список в localStorage
-  localStorage.setItem('favorites', JSON.stringify(favorites));
+  // Видаляємо елемент після завершення анімації 
+  setTimeout(() => {
+    // Видаляємо вправу з localStorage
+    let favEx = JSON.parse(localStorage.getItem('favorites')) || [];
+    const favorites = favEx.filter(exercise => exercise._id !== exerciseId);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
 
-  // Перерендеримо список вправ
-  createExerciseCardsFromLocalStorage();
+    // Видаляємо картку з DOM
+    cardToDelete.remove();
+
+    // Якщо карток більше немає, оновлюємо список
+    if (favorites.length === 0) {
+      createExerciseCardsFromLocalStorage();
+    }
+  }, 300); 
 }
 
 // Обробник подій для видалення вправи
 document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
-    // Перевіряємо, чи клікнув користувач по іконці "trash"
-    const trashIcon = event.target.closest('.trash-icon');
-    if (trashIcon) {
-        const exerciseId = trashIcon.getAttribute('data-modal'); // Отримуємо ID вправи
-        removeExerciseFromFavorites(exerciseId); // Видаляємо вправу
-    }
+  const trashIcon = event.target.closest('.trash-icon');
+  if (trashIcon) {
+    const exerciseId = trashIcon.getAttribute('data-modal');
+    removeExerciseFromFavoritesWithAnimation(exerciseId);
+  }
 });
+
 // Викликаємо функцію при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', createExerciseCardsFromLocalStorage);
 
@@ -95,102 +104,102 @@ document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
 
 // приклад для роботи зі сховищем
 
-const apiData = [
-  {
-    "_id": "64f389465ae26083f39b17a4",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0003.gif",
-    "name": "air bike",
-    "target": "abs",
-    "description": "This refers to your core muscles, which include the rectus abdominis, obliques, and transverse abdominis. They're essential for maintaining posture, stability, and generating force in many movements. Exercises that target the abs include crunches, leg raises, and planks.",
-    "rating": 3,
-    "burnedCalories": 312,
-    "time": 3,
-    "popularity": 1
-  },
-  {
-    "_id": "64f389465ae26083f39b17a5",
-    "bodyPart": "waist",
-    "equipment": "body weight",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0006.gif",
-    "name": "alternate heel touchers",
-    "target": "abs",
-    "description": "This refers to your core muscles, which include the rectus abdominis, obliques, and transverse abdominis. They're essential for maintaining posture, stability, and generating force in many movements. Exercises that target the abs include crunches, leg raises, and planks.",
-    "rating": 3,
-    "burnedCalories": 116,
-    "time": 3,
-    "popularity": 1
-  },
-  {
-    "_id": "64f389465ae26083f39b17a6",
-    "bodyPart": "back",
-    "equipment": "cable",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
-    "name": "alternate lateral pulldown",
-    "target": "lats",
-    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
-    "rating": 3,
-    "burnedCalories": 70,
-    "time": 3,
-    "popularity": 1
-  },
-  {
-    "_id": "64f389465ae26083f39b17a6",
-    "bodyPart": "back",
-    "equipment": "cable",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
-    "name": "alternate lateral pulldown",
-    "target": "lats",
-    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
-    "rating": 3,
-    "burnedCalories": 70,
-    "time": 3,
-    "popularity": 1
-  },
-  {
-    "_id": "64f389465ae26083f39b17a6",
-    "bodyPart": "back",
-    "equipment": "cable",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
-    "name": "alternate lateral pulldown",
-    "target": "lats",
-    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
-    "rating": 3,
-    "burnedCalories": 70,
-    "time": 3,
-    "popularity": 1
-  },
-  {
-    "_id": "64f389465ae26083f39b17a6",
-    "bodyPart": "back",
-    "equipment": "cable",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
-    "name": "alternate lateral pulldown",
-    "target": "lats",
-    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
-    "rating": 3,
-    "burnedCalories": 70,
-    "time": 3,
-    "popularity": 1
-  },
-  {
-    "_id": "64f389465ae26083f39b17a6",
-    "bodyPart": "back",
-    "equipment": "cable",
-    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
-    "name": "alternate lateral pulldown",
-    "target": "lats",
-    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
-    "rating": 3,
-    "burnedCalories": 70,
-    "time": 3,
-    "popularity": 1
-  },
-];
+// const apiData = [
+//   {
+//     "_id": "64f389465ae26083f39b17a4",
+//     "bodyPart": "waist",
+//     "equipment": "body weight",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0003.gif",
+//     "name": "air bike",
+//     "target": "abs",
+//     "description": "This refers to your core muscles, which include the rectus abdominis, obliques, and transverse abdominis. They're essential for maintaining posture, stability, and generating force in many movements. Exercises that target the abs include crunches, leg raises, and planks.",
+//     "rating": 3,
+//     "burnedCalories": 312,
+//     "time": 3,
+//     "popularity": 1
+//   },
+//   {
+//     "_id": "64f389465ae26083f39b17a5",
+//     "bodyPart": "waist",
+//     "equipment": "body weight",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0006.gif",
+//     "name": "alternate heel touchers",
+//     "target": "abs",
+//     "description": "This refers to your core muscles, which include the rectus abdominis, obliques, and transverse abdominis. They're essential for maintaining posture, stability, and generating force in many movements. Exercises that target the abs include crunches, leg raises, and planks.",
+//     "rating": 3,
+//     "burnedCalories": 116,
+//     "time": 3,
+//     "popularity": 1
+//   },
+//   {
+//     "_id": "64f389465ae26083f39b17a6",
+//     "bodyPart": "back",
+//     "equipment": "cable",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+//     "name": "alternate lateral pulldown",
+//     "target": "lats",
+//     "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+//     "rating": 3,
+//     "burnedCalories": 70,
+//     "time": 3,
+//     "popularity": 1
+//   },
+//   {
+//     "_id": "64f389465ae26083f39b17a6",
+//     "bodyPart": "back",
+//     "equipment": "cable",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+//     "name": "alternate lateral pulldown",
+//     "target": "lats",
+//     "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+//     "rating": 3,
+//     "burnedCalories": 70,
+//     "time": 3,
+//     "popularity": 1
+//   },
+//   {
+//     "_id": "64f389465ae26083f39b17a6",
+//     "bodyPart": "back",
+//     "equipment": "cable",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+//     "name": "alternate lateral pulldown",
+//     "target": "lats",
+//     "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+//     "rating": 3,
+//     "burnedCalories": 70,
+//     "time": 3,
+//     "popularity": 1
+//   },
+//   {
+//     "_id": "64f389465ae26083f39b17a6",
+//     "bodyPart": "back",
+//     "equipment": "cable",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+//     "name": "alternate lateral pulldown",
+//     "target": "lats",
+//     "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+//     "rating": 3,
+//     "burnedCalories": 70,
+//     "time": 3,
+//     "popularity": 1
+//   },
+//   {
+//     "_id": "64f389465ae26083f39b17a6",
+//     "bodyPart": "back",
+//     "equipment": "cable",
+//     "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+//     "name": "alternate lateral pulldown",
+//     "target": "lats",
+//     "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+//     "rating": 3,
+//     "burnedCalories": 70,
+//     "time": 3,
+//     "popularity": 1
+//   },
+// ];
 
-// // Збереження у локальне сховище
-localStorage.setItem('favorites', JSON.stringify(apiData));
+// // // Збереження у локальне сховище
+// localStorage.setItem('favorites', JSON.stringify(apiData));
 
-// Перевірка
-console.log('Data saved to localStorage:', JSON.parse(localStorage.getItem('favorites')));
+// // Перевірка
+// console.log('Data saved to localStorage:', JSON.parse(localStorage.getItem('favorites')));
