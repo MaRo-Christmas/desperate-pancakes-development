@@ -1,19 +1,19 @@
 .scroll-to-top {
   position: fixed;
-  bottom: 30px; 
-  right: 30px;
-  width: 50px;
-  height: 50px;
+  bottom: 35px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
   background-color: #242424;
   color: white;
   border-radius: 50%;
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: none;
-  align-items: center;
+  display: flex;
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
+  display: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -27,4 +27,24 @@
   background-color: #0056b3;
   transform: scale(1.1);
 }
+
+@media screen and (min-width: 768px) {
+  .scroll-to-top {
+      width: 100px;
+      height: 100px;
+  }
+
+  .scroll-to-top svg {
+      width: 33px;
+      height: 33px;
+  }
+
+}
+
+@media screen and (min-width: 1440px) {
+  .scroll-to-top {
+      bottom: 15px;
+  }
+}
+
   
