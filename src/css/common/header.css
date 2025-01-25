@@ -1,5 +1,6 @@
 .header {
     padding-top: 20px;
+    background-color: var(--gray);
   }
   .nav .logo {
     height: 24px;
@@ -9,7 +10,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
   }
   
   .nav .socials,
