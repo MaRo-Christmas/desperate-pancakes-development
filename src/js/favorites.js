@@ -81,7 +81,17 @@ document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
 // Викликаємо функцію при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', createExerciseCardsFromLocalStorage);
 
-// модальне вікно при натисненні Start додати файл!
+// модальне вікно при натисненні Start 
+
+document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
+  // Знаходимо кнопку "Start" за атрибутом data-modal-open
+  const startButton = event.target.closest('[data-modal-open]');
+  if (startButton) {
+    // Відкриття модального вікна 
+    const modalWindow = document.querySelector('.modal-overlay'); // Знаходимо контейнер модального вікна
+    modalWindow.classList.add('is-open'); // Додаємо клас для його відкриття
+  }
+});
 
 // приклад для роботи зі сховищем
 
@@ -124,10 +134,62 @@ const apiData = [
     "burnedCalories": 70,
     "time": 3,
     "popularity": 1
-  }
+  },
+  {
+    "_id": "64f389465ae26083f39b17a6",
+    "bodyPart": "back",
+    "equipment": "cable",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+    "name": "alternate lateral pulldown",
+    "target": "lats",
+    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+    "rating": 3,
+    "burnedCalories": 70,
+    "time": 3,
+    "popularity": 1
+  },
+  {
+    "_id": "64f389465ae26083f39b17a6",
+    "bodyPart": "back",
+    "equipment": "cable",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+    "name": "alternate lateral pulldown",
+    "target": "lats",
+    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+    "rating": 3,
+    "burnedCalories": 70,
+    "time": 3,
+    "popularity": 1
+  },
+  {
+    "_id": "64f389465ae26083f39b17a6",
+    "bodyPart": "back",
+    "equipment": "cable",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+    "name": "alternate lateral pulldown",
+    "target": "lats",
+    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+    "rating": 3,
+    "burnedCalories": 70,
+    "time": 3,
+    "popularity": 1
+  },
+  {
+    "_id": "64f389465ae26083f39b17a6",
+    "bodyPart": "back",
+    "equipment": "cable",
+    "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0007.gif",
+    "name": "alternate lateral pulldown",
+    "target": "lats",
+    "description": "These large back muscles are responsible for shoulder adduction and horizontal extension. Pull-ups and lat pulldowns are common exercises targeting the lats.",
+    "rating": 3,
+    "burnedCalories": 70,
+    "time": 3,
+    "popularity": 1
+  },
 ];
 
-// Збереження у локальне сховище
+// // Збереження у локальне сховище
 localStorage.setItem('favorites', JSON.stringify(apiData));
 
 // Перевірка
