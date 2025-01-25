@@ -5,6 +5,6 @@ import './search.js';
 import './favorites.js';
 import './scroll-btn.js';
 import './header.js';
-
+import './modal-window.js'
 
 import "./category/exercises-list.js";
