@@ -15,23 +15,26 @@
     <title>Your energy</title>
   </head>
   <body>
-    <load src="partials/header.html" />
-    <load src="partials/header-menu.html" />
+    <load src="./partials/header.html" />
+    <load src="./partials/header-menu.html" />
     <main>
       <section class="favorites">
         <div class="container">
           <h1>Favorites</h1>
           <div class="fav-wrapper">
-            <div class="wrapper-first">
-              <load src="/partials/quote-fav.html" />
+            <load src="./partials/quote-fav.html" />
             <ul class="exr-list wrapper-secnd" id="wrapper-secnd"></ul>
           </div>
         </div>
       </section>
-      <!-- лінк "модальне_вікно" -->
+      <load src="./partials/scroll-btn.html" />
+      <load src="./partials/modal-window.html" />
     </main>
-    <script defer type="module" src="./js/main.js"></script>
+    <script defer type="module" src="./js/favorites.js"></script>
+    <script defer type="module" src="./js/quote.js"></script>
+    <script defer type="module" src="./js/header-menu.js"></script>
+    <script defer type="module" src="./js/modal-window.js"></script>
 
-    <!-- скріпт деферт тип "module" src "модальне вікно" -->
+    <script src="./js/scroll-btn.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
-@media screen and (min-width: 1024px) {
-    .main-section {
+@media screen and (min-width: 1200px) {
+    .exercises {
         display: flex;
         flex-direction: row-reverse;
-        align-items: start;
+        gap: 32px;
     }
 }

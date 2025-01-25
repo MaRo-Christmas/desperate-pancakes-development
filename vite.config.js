@@ -12,6 +12,7 @@ export default defineConfig(({ command }) => {
     root: 'src',
     build: {
       sourcemap: true,
+      target: 'esnext', // Оновлення цільового середовища для підтримки top-level await
       rollupOptions: {
         // Пошук всіх HTML-файлів у src, включаючи вкладені папки
         input: glob.sync('./src/**/*.html'),

@@ -9,26 +9,31 @@
     letter-spacing: -0.04em;
     font-weight: 400;
     margin-bottom: 20px;
+    color: #242424;
 }
-/* /* .fav-wrapper {
+.fav-wrapper {
     display: flex;
     flex-direction: column;
     gap: 40px;
-} */
+} 
 
-/* @media screen and (min-width:1440px) {
+
+@media screen and (min-width:1200px) {
     .fav-wrapper {
         display: grid;
         grid-template-columns: 1.2fr 2fr;
+        /* display: flex;
+        flex-direction: row;
+        grid-template-columns: 1.2fr 2fr; */
     }
-} */
+} 
 /* .wrapper-first {
     display: flex;
     flex-direction: column;
     gap: 20px;
-} */
+} 
 
-/* @media screen and (min-width:767px) {
+@media screen and (min-width:767px) {
     .wrapper-first {
         flex-direction: row;
         flex-wrap: wrap;
@@ -49,33 +54,30 @@
     margin: 0 auto;
 }
 
-.fav-exr-card {
-    height: 141px;
 
-    @media screen and (min-width:1440px) {
-        width: 100%;
-        max-width: none;
-    }
-}
 
-.fav-workout-title-left {
-    display: flex;
-    align-items: center;
-} */
+ */
 
 
 .wrapper-secnd {
     display: flex;
+    gap: 20px;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
+        
 
-    @media screen and (min-width:767px) {
+}
+
+ @media screen and (min-width:767px) {
+    .wrapper-secnd {
         flex-direction: row;
         flex-wrap: wrap;
     }
+ }
 
-    @media screen and (min-width:1440px) {
+ @media screen and (min-width:1200px) {
+    .wrapper-secnd {
         height: 472px;
         overflow-y: auto;
         overflow-x: hidden;
@@ -83,8 +85,7 @@
         padding-right: 10px;
         align-items: center;
     }
-
-}
+ }
 /* .text-exer для тексту, коли немає улюблених*/
 .text-exer {
     text-align: center;
@@ -93,15 +94,16 @@
 @media screen and (min-width: 767px) {
     .text-exer {
         max-width: 554px;
-        padding-top: 132px;
+        padding-top: 60px;
+        /* padding-top: 132px; */
         margin: 0 auto;
     }
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width:1200px) {
     .text-exer {
-        height: 390px;
-        padding-top: 0;
+        /* height: 390px;
+        padding-top: 0; */
         max-width: none;
         display: flex;
         flex-direction: column;
@@ -115,13 +117,182 @@
 .wrapper-secnd::-webkit-scrollbar-track {
     background: rgba(36, 36, 36, 0.1);
     border-radius: 12px;
-    /* Округление дорожки */
 }
 
 .wrapper-secnd::-webkit-scrollbar-thumb {
     background: rgba(36, 36, 36, 1);
-    /* Цвет ползунка */
     border-radius: 12px;
-    /* Округление ползунка */
+}
+/* styles for cards */
+
+.fav-exr-card {
+    height: 141px;
+
+    @media screen and (min-width:1200px) {
+        width: 100%;
+        max-width: none;
+    }
+}
+.exr-card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 15px;
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex: 0 0 calc(50% - 16px);
+    gap: 8px;
+    
+} 
+
+@media (max-width: 767px) {
+    .exr-card {
+        flex: 0 0 calc(100% - 16px);
+        max-width: 335px;
+        gap: 16px;
+        margin-bottom: 0;
+    }
+    
+}
+@media screen and (min-width:1200px) {
+    .exr-card {
+        width: 50%;
+        max-width: none;
+    }
+        
 }
 
+
+.fav-workout-title-left {
+    display: flex;
+    align-items: center;
+}
+.workout-title-name {
+    font-weight: 500;
+    color: #242424;
+    border: 1px solid #242424;
+    border-radius: 15px;
+    padding: 5px 8px;
+    width: 76px;
+    height: 26px;
+}
+
+.trash-icon {
+    cursor: pointer;
+    fill: #242424;
+    transition: fill 0.3s ease;
+}
+
+.trash-icon:hover {
+    fill: #242424;
+}
+
+.workout-title-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.workout-start {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #242424;
+    border: none;
+    background: white;
+}
+
+.workout-arw {
+    transform: rotate(90deg)
+}
+.workout-run-man-wrapper {
+    width: 24px;
+    height: 24px;
+    background-color: #242424;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.workout-run-man {
+    fill: white;
+}
+
+.workout-details-disc {
+    font-size: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 767px) {
+        font-size: 20px;
+        line-height: 1.333;
+    }
+}
+.workout-stats,
+.workout-details,
+.workout-title,
+.workout-title-left {
+    display: flex;
+    gap: 16px;
+
+    @media (max-width: 767px) {
+        gap: 10px;
+    }
+}
+
+
+
+.workout-title {
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+.workout-stats>p {
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.workout-stats-title {
+    color: rgba(36, 36, 36, 0.4);
+}
+
+.workout-stats-cal {
+    max-width: 133px;
+
+    @media (max-width: 767px) {
+        max-width: 131px;
+    }
+}
+
+.workout-stats-part {
+    max-width: 93px;
+
+    @media (max-width: 767px) {
+        max-width: 91px;
+    }
+}
+
+.workout-stats-target {
+    max-width: 66px;
+
+    @media (max-width: 767px) {
+        max-width: 61px;
+    }
+}
+
+/* Анімація для видалення картки */
+.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
