@@ -3,7 +3,13 @@ import { getExercises } from "../api/getExercises";
 let category = 'Muscles';
 
 window.onload = () => {
-  getExercises(category, 1, 10).then((result) => {
+  let limit;
+  if (window.matchMedia('screen and (max-width: 768px)').matches){
+    limit = 10;
+  } else {
+    limit = 12;
+  }
+  getExercises(category, 1, limit).then((result) => {
     renderListOfCards(result.results);
     renderPagination(result.totalPages);
   })
