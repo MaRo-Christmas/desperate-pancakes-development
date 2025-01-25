@@ -7,4 +7,3 @@ import './category/exercises-list.js';
 import './scroll-btn.js';
 import './header.js';
 import './modal-window.js';
-import './favorites.js';
