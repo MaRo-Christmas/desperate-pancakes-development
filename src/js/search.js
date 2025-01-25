@@ -70,10 +70,10 @@ searchButton.addEventListener('click', () => {
 });
 
 // Обробка подій для кнопки "Load More"
-loadMoreButton.addEventListener('click', () => {
-  currentPage += 1; // Перейти на наступну сторінку
-  searchExercises(currentQuery, currentPage);
-});
+// loadMoreButton.addEventListener('click', () => {
+//   currentPage += 1; // Перейти на наступну сторінку
+//   searchExercises(currentQuery, currentPage);
+// });
 
 // Очищення результатів при очищенні поля пошуку
 searchInput.addEventListener('input', () => {
