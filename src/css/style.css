@@ -8,7 +8,7 @@
 @import url('./components/favorites.css');
 
 /* Reuse styles */
-
+@import url('./components/socials.css');
 /* Components styles */
 @import url('./common/header.css');
 @import url('./common/header-menu.css');
@@ -17,3 +17,5 @@
 @import url('./utils/quote.css');
 @import url('./components/home-exercises.css');
 @import url('./components/main-section.css');
+@import url('./components/scroll-btn.css');
+@import url('./components/modal-window.css');
