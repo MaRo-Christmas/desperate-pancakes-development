@@ -157,7 +157,7 @@
   }
 
   .footer-icons {
-    margin-right: 114px;
+    /* margin-right: 114px; */
     margin-bottom: 0;
   }
 
@@ -168,6 +168,13 @@
   .footer-text p {
     font-size: 56px;
     line-height: 107%;
+    /* changes */
+    padding-left: 65px;
+  }
+/* changes */
+  .extra {
+    display: inline-block;
+    margin-right: 10px;
   }
 
   .footer-subscribe {
@@ -204,7 +211,7 @@
   }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1200px) {
   .footer {
     padding: 64px 0 16px;
   }
@@ -219,7 +226,7 @@
   }
 
   .footer-icons {
-    margin-right: 158px;
+    /* margin-right: 158px; */
     margin-bottom: 0;
   }
 
@@ -241,14 +248,16 @@
   }
 
   .footer-bottom-text {
-    margin-right: 122px;
+    /* 122px */
+    margin-right: 100px; 
   }
-
+/* changes */
   .footer-bottom-links {
     margin-right: 498px;
   }
 
   .footer-copyright {
-    margin-left: 0;
+    /* 0 */
+    margin-left: -160px;
   }
 }
