@@ -2,6 +2,7 @@
   padding-top: 20px;
   background-color: var(--gray);
 }
+
 .nav .logo {
   height: 24px;
 }
@@ -34,8 +35,7 @@
     display: none;
   }
 
-  .nav .socials,
-  .nav .menu-items {
+  .nav .socials {
     display: block;
   }
 
@@ -50,6 +50,7 @@
     border-radius: 60px;
     background-color: var(--black);
     box-shadow: var(--shadow);
+    position: relative; 
   }
 
   .nav .menu-item {
@@ -59,7 +60,9 @@
     background: var(--black);
     transition-duration: var(--anim-duration);
     transition-timing-function: var(--anim-timing-function);
-    transition-property: background-color;
+    transition-property: background-color, color;
+    position: relative;
+    z-index: 1; 
   }
 
   .nav .menu-item.active {
@@ -76,6 +79,7 @@
     width: auto;
     height: 100%;
     padding: 6px 12px;
+    text-decoration: none;
   }
 
   .nav .socials {
@@ -120,7 +124,6 @@
   .nav .social-item:hover svg {
     fill: var(--gray);
   }
-
 }
 
 @media screen and (min-width: 1440px) {
@@ -131,5 +134,4 @@
   .nav .menu-items {
     padding: 8px 50px;
   }
-  
 }
