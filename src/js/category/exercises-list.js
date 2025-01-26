@@ -1,84 +1,33 @@
-import { getExercises } from "../api/getExercises";
+import icons from '../../images/icons.svg';
 
-let category = 'Muscles';
-
-window.onload = () => {
-  let limit;
-  if (window.matchMedia('screen and (max-width: 768px)').matches){
-    limit = 10;
-  } else {
-    limit = 12;
-  }
-  getExercises(category, 1, limit).then((result) => {
-    renderListOfCards(result.results);
-    renderPagination(result.totalPages);
-  })
-}
-
-const btnsListRef = document.querySelector(".categories-btns-list");
-const listRef = document.querySelector(".categories-cards-list");
-const paginationRef = document.getElementById('pagination');
-
-
-btnsListRef.addEventListener("click", (e) => handleClick(e));
-paginationRef.addEventListener("click", (e) => handlePaginationClick(e));
-
-function handleClick(e) {
-  const isBtn = e.target.classList.contains("category-btn");
-  if (!isBtn) return;
-  
-  category = e.target.dataset.action;
-
-  const btnsListAll = document.querySelectorAll(".category-btn");
-  btnsListAll.forEach(item => item.classList.remove('active'));
-  e.target.classList.add('active')
-
-  getExercises(category, 1, 10).then((result) => {
-    renderListOfCards(result.results);
-    renderPagination(result.totalPages);
-  });
-}
-
-function handlePaginationClick(e) {
-  const isBtn = e.target.classList.contains("pagination-item");
-  if (!isBtn) return;
-
-  const page = e.target.dataset.page;
-  const paginationAll = document.querySelectorAll('.pagination-item');
-  paginationAll.forEach(item => item.classList.remove('active'));
-  e.target.classList.add('active')
-
-  getExercises(category, page, 10).then((result) => {
-    renderListOfCards(result.results);
-  });
-}
-
-function createCart({ filter, imgURL, name }) {
-  return `<li class='card-item'>
-      <div class='card-wrapper'>
-        <img src=${imgURL} alt=${name}/>
-        <div class='card-overlay'></div>
-        <div class='card-text'>
-          <h3>${name}</h3>
-          <span>${filter}</span>
+export function createExerciseCard({ _id, name, bodyPart, target, burnedCalories, time }) {
+  return (`
+    <li class="exr-card fav-exr-card">
+      <div class="workout-title">
+        <div class="workout-title-left fav-workout-title-left">
+          <p class="workout-title-name">WORKOUT</p>
+        </div>
+        <div class="workout-title-right">
+          <button aria-label="start-trainig" class="workout-start" data-modal-open="${_id}">Start
+            <svg class="workout-arw" width="16" height="16">
+              <use href="${icons}#arw-top"></use>
+            </svg>
+          </button>
         </div>
       </div>
-    </li>`;
-}
-
-function renderListOfCards(arr) {
-  listRef.innerHTML = '';
-  const list = arr.map((el) => createCart(el)).join("");
-  listRef.insertAdjacentHTML("afterbegin", list);
-}
-
-function renderPagination(number) {
-  paginationRef.innerHTML = '';
-  const arr = [];
-  for (let index = 1; index <= number; index++) {
-    const element = `<div class='pagination-item' data-page='${index}'>${index}</div>`;
-    arr.push(element)
-  }
-  paginationRef.insertAdjacentHTML("afterbegin", arr.join(''))
-  paginationRef.firstChild.classList.add('active')
+      <div class="workout-details">
+        <p class="workout-run-man-wrapper">
+          <svg class="workout-run-man" width="16" height="16">
+            <use href="${icons}#runn-man"></use>
+          </svg>
+        </p>
+        <p class="workout-details-disc">${name}</p>
+      </div>
+      <div class="workout-stats">
+        <p class="workout-stats-cal"><span class="workout-stats-title">Burned calories: </span>${burnedCalories} / ${time}</p>
+        <p class="workout-stats-part"><span class="workout-stats-title">Body part: </span>${bodyPart}</p>
+        <p class="workout-stats-target"><span class="workout-stats-title">Target: </span>${target}</p>
+      </div>
+    </li>
+  `)
 }

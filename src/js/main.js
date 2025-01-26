@@ -5,7 +5,6 @@ import './search.js';
 import './favorites.js';
 import './footer.js';
 import './category/exercises-list.js';
-import './category/exercises-list.js';
 import './scroll-btn.js';
 import './header.js';
 import './modal-window.js';
