@@ -1,7 +1,15 @@
+@media screen and (min-width: 768px) {
+    .exercises {
+        margin-bottom: 100px;
+    }
+}
+
 @media screen and (min-width: 1200px) {
     .exercises {
         display: flex;
         flex-direction: row-reverse;
         gap: 32px;
+        margin-bottom: 132px;
     }
 }
+
