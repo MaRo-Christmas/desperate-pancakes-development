@@ -2,7 +2,6 @@
 import './header-menu.js';
 import './quote.js';
 import './search.js';
-// import './favorites.js';
 import './footer.js';
 import './category/exercises-list.js';
 import './category/exercises-list.js';
