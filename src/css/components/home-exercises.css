@@ -6,6 +6,18 @@
   margin-bottom: 20px;
 }
 
+.slash {
+  display: none;
+}
+
+.current-category {
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(36, 36, 36, 0.5);
+  text-transform: capitalize;
+}
+
 .filters-container {
   display: flex;
   flex-direction: column;
@@ -41,7 +53,6 @@
 .category-btn.active  {
   color: #242424;
 }
-
 
 .categories-cards-list {
   display: flex;
@@ -93,9 +104,29 @@
   background: rgba(17, 17, 17, 0.5);
 }
 
+.exercises-list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.workout-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.workout-star {
+  fill: #eea10c;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -116,6 +147,18 @@
 }
 
 @media screen and (min-width: 768px) {
+  .main-section-title {
+    position: absolute;
+    font-size: 44px;
+    line-height: 1.09;
+    letter-spacing: -0.02em;
+  } 
+  
+  .current-category {
+    font-size: 24px;
+    line-height: 1.33;
+  }
+
   .filters-container {
     flex-direction: row;
     justify-content: space-between;
@@ -132,18 +175,25 @@
   .card-item {
     flex-basis: calc((100% - 2 * 15px) / 3);
   }
+
+  .exercises-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .main-section-title {
     position: absolute;
-    font-size: 44px;
-    line-height: 1.09;
-    letter-spacing: -0.02em;
   }
 
   .filters-container {
     justify-content: flex-end;
+    height: 48px;
+  }
+
+  .card-wrapper {
+    width: 335px;
   }
 
   .card-wrapper img {
