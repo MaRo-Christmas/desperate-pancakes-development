@@ -4,7 +4,7 @@ const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
 let currentExerciseId = null;
 let removeFromFavorites = false;
 
-const fetchExercisesRequest = async (id) => {
+export const fetchExercisesRequest = async (id) => {
   try {
     const response = await axios.get(BASE_URL + id);
     console.log(response.data);
