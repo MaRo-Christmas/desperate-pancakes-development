@@ -7,7 +7,6 @@ let removeFromFavorites = false;
 const fetchExercisesRequest = async (id) => {
   try {
     const response = await axios.get(BASE_URL + id);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching data', error);
@@ -16,7 +15,6 @@ const fetchExercisesRequest = async (id) => {
 };
 
 const fetchExercises = await fetchExercisesRequest('64f389465ae26083f39b17a2');
-console.log(fetchExercises);
 
 // Елементи модального вікна з вправами
 const modalWindow = document.querySelector('.modal-overlay');
@@ -31,22 +29,43 @@ const description = document.querySelector('.modal-info-description');
 const addToFavorites = document.querySelector('.add-to-favorites');
 const giveRating = document.querySelector('.give-a-rating');
 
-closeButton.addEventListener('click', () => {
-  modalWindow.classList.remove('is-open');
-});
+// Елементи модального вікна з рейтингом
+const ratingWindow = document.querySelector('.rating');
+const form = document.getElementById('userForm');
+const closeRatingButton = document.querySelector('.modal-close-rating-button');
+const radioButtons = document.querySelectorAll('input[name="custom-radio"]');
+const scoreValue = document.querySelector('.modal-rating-block-score-value');
+const errorLabel = document.querySelector('.modal-error-label-text');
+let rate;
 
-modalWindow.addEventListener('click', (event) => {
-  console.log(event.target);
+function removeModalEventListeners() {
+  closeButton.removeEventListener('click', closeModal);
+  modalWindow.removeEventListener('click', modalOutsideClick);
+  document.removeEventListener('keydown', modalKeydown);
+}
+
+function closeModal() {
+  modalWindow.classList.remove('is-open');
+  removeModalEventListeners();
+}
+
+function modalOutsideClick(event) {
   if (event.target === modalWindow) {
     modalWindow.classList.remove('is-open');
+    removeModalEventListeners();
   }
-});
+}
 
-document.addEventListener('keydown', (event) => {
+function modalKeydown(event) {
   if (event.key === 'Escape') {
     modalWindow.classList.remove('is-open');
+    removeModalEventListeners();
   }
-});
+}
+
+closeButton.addEventListener('click', closeModal);
+modalWindow.addEventListener('click', modalOutsideClick);
+document.addEventListener('keydown', modalKeydown);
 
 function toggleFromFavorites() {
   const favorites = JSON.parse(window.localStorage.getItem('favorites'));
@@ -124,46 +143,12 @@ targetsList.innerHTML = Object.keys(targetsInfoObj).map((item) =>
 description.innerHTML = `<p>${fetchExercises['description']}</p>`;
 
 // ______________________ADD RATING LOGIC______________________________________________________________
-
-// Елементи модального вікна з рейтингом
-const ratingWindow = document.querySelector('.rating');
-const form = document.getElementById('userForm');
-const closeRatingButton = document.querySelector('.modal-close-rating-button');
-const radioButtons = document.querySelectorAll('input[name="custom-radio"]');
-const scoreValue = document.querySelector('.modal-rating-block-score-value');
-const errorLabel = document.querySelector('.modal-error-label-text');
-let rate;
-giveRating.addEventListener('click', () => {
-  exercisesWindow.classList.add('hide-window');
-  setTimeout(() => {
-    ratingWindow.classList.remove('hide-window');
-  }, 150);
-});
-
 function closeRating() {
   ratingWindow.classList.add('hide-window');
   setTimeout(() => {
     exercisesWindow.classList.remove('hide-window');
   }, 150);
 }
-
-closeRatingButton.addEventListener('click', () => {
-  closeRating();
-});
-
-radioButtons.forEach((radio) => {
-  radio.addEventListener('change', (event) => {
-    rate = event.target.value;
-    scoreValue.innerText = `${rate}.0`;
-    radioButtons.forEach((star) => {
-      if (Number(star.value) <= Number(rate)) {
-        star.classList.add('checked-rating');
-      } else {
-        star.classList.remove('checked-rating');
-      }
-    });
-  });
-});
 
 async function patchRating(data) {
   const url = BASE_URL + '64f389465ae26083f39b17a2' + '/rating';
@@ -184,7 +169,6 @@ async function patchRating(data) {
 
     const responseData = await response.json();
     closeRating();
-    console.log('Success:', responseData);
     return responseData;
   } catch (error) {
     errorLabel.innerText = 'Something went wrong. Please try again';
@@ -192,6 +176,31 @@ async function patchRating(data) {
     throw error;
   }
 }
+
+giveRating.addEventListener('click', () => {
+  exercisesWindow.classList.add('hide-window');
+  setTimeout(() => {
+    ratingWindow.classList.remove('hide-window');
+  }, 150);
+});
+
+closeRatingButton.addEventListener('click', () => {
+  closeRating();
+});
+
+radioButtons.forEach((radio) => {
+  radio.addEventListener('change', (event) => {
+    rate = event.target.value;
+    scoreValue.innerText = `${rate}.0`;
+    radioButtons.forEach((star) => {
+      if (Number(star.value) <= Number(rate)) {
+        star.classList.add('checked-rating');
+      } else {
+        star.classList.remove('checked-rating');
+      }
+    });
+  });
+});
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
