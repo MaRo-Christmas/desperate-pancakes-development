@@ -1,50 +1,62 @@
 <div class="categories-wrapper">
-   <!-- Search Section -->
-    <div class="filters-container">
-      <div class="search-container">
-        <input
-          type="text"
-          class="search-input"
-          id="searchInput"
-          placeholder="Search"
-          aria-label="Search exercises"
-        />
-        <button class="search-button" id="searchButton" aria-label="Search">
-          <svg
-            class="search-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#111"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="16" y1="16" x2="22" y2="22"></line>
-          </svg>
-        </button>
-      </div>
-      <ul class="categories-btns-list">
-        <li class="categories-btns-item">
-          <button class="category-btn active" type="button" data-action="Muscles">
-            Muscles
-          </button>
-        </li>
-        <li class="categories-btns-item">
-          <button class="category-btn" type="button" data-action="Body parts">
-            Body parts
-          </button>
-        </li>
-        <li class="categories-btns-item">
-          <button class="category-btn" type="button" data-action="Equipment">
-            Equipment
-          </button>
-        </li>
-      </ul>
+  <!-- Search Section -->
+  <div class="filters-container">
+    <div class="search-container">
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="Search"
+        aria-label="Search exercises"
+      />
+      <button class="search-button" id="searchButton" aria-label="Search">
+        <svg
+          class="search-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#111"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="16" y1="16" x2="22" y2="22"></line>
+        </svg>
+      </button>
     </div>
-  <div class="categories-cards-wrapper">
-    <ul class="categories-cards-list"></ul>
+    <ul class="categories-btns-list">
+      <li class="categories-btns-item">
+        <button class="category-btn active" type="button" data-action="Muscles">
+          Muscles
+        </button>
+      </li>
+      <li class="categories-btns-item">
+        <button class="category-btn" type="button" data-action="Body parts">
+          Body parts
+        </button>
+      </li>
+      <li class="categories-btns-item">
+        <button class="category-btn" type="button" data-action="Equipment">
+          Equipment
+        </button>
+      </li>
+    </ul>
   </div>
-  <div id="pagination" class="pagination"></div>
+
+  <!-- Results Section -->
+  <div class="categories-cards-wrapper">
+    <ul id="defaultCards" class="categories-cards-list">
+      <!-- Стандартні картки -->
+      <li class="card-item">Standard Card 1</li>
+      <li class="card-item">Standard Card 2</li>
+      <li class="card-item">Standard Card 3</li>
+    </ul>
+    <ul id="searchResults" class="categories-cards-list" style="display: none;"></ul>
+  </div>
+
+  <!-- Load More Button -->
+  <button id="loadMoreButton" class="load-more" style="display: none;">
+    Load More
+  </button>
 </div>

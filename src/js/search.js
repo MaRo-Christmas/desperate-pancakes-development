@@ -1,85 +1,97 @@
-
-
-// Усі коментарі залишив тільки для правильного усвідомлення що за що відповідає
-// Коли будемо мержати усі коменти можна буде видалити
-
-import axios from 'axios';
+import axios from "axios";
 
 // Отримання посилань на елементи
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
-const searchResults = document.getElementById('searchResults');
-const loadMoreButton = document.getElementById('loadMoreButton');
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const searchResults = document.getElementById("searchResults");
+const defaultCards = document.getElementById("defaultCards");
+const loadMoreButton = document.getElementById("loadMoreButton");
 
-let currentPage = 1; // Трекер поточної сторінки
-let currentQuery = ''; // Зберігання поточного пошукового запиту
+let allExercises = []; // Зберігає всі отримані вправи
+let currentQuery = ""; // Зберігання поточного пошукового запиту
+
+// Функція для відображення вправ
+function displayExercises(exercises) {
+  if (exercises.length > 0) {
+    searchResults.innerHTML = "";
+    exercises.forEach((exercise) => {
+      const exerciseItem = document.createElement("li");
+      exerciseItem.classList.add("card-item");
+      exerciseItem.innerHTML = `
+        <strong>${exercise.name || "Unnamed Exercise"}</strong>
+        <p>Burned calories: ${exercise.burnedCalories || "N/A"}</p>
+        <p>Description: ${exercise.description || "No description available"}</p>
+      `;
+      searchResults.appendChild(exerciseItem);
+    });
+    defaultCards.style.display = "none";
+    searchResults.style.display = "flex";
+  } else {
+    searchResults.innerHTML = "<p>No exercises found.</p>";
+    searchResults.style.display = "flex";
+    defaultCards.style.display = "none";
+  }
+}
+
+// Функція для локального фільтрування
+function filterExercises(query) {
+  return allExercises.filter((exercise) =>
+    exercise.name.toLowerCase().includes(query.toLowerCase())
+  );
+}
 
 // Функція для запиту до API
-async function searchExercises(query, page = 1) {
-  const baseURL = 'https://your-energy.b.goit.study/api/exercises';
+async function fetchAllExercises() {
+  const baseURL = "https://your-energy.b.goit.study/api/exercises";
   try {
-    const response = await axios.get(baseURL, {
-      params: { filter: query, limit: 10, page },
-    });
+    const response = await axios.get(baseURL, { params: { limit: 1000 } }); // Отримати всі вправи
+    allExercises = response.data?.results || [];
+    console.log("Усі вправи:", allExercises);
 
-    // Якщо це перша сторінка, очистіть результати
-    if (page === 1) {
-      searchResults.innerHTML = '';
-    }
-
-    // Перевірка результатів
-    if (response.data && response.data.results && response.data.results.length > 0) {
-      response.data.results.forEach((exercise) => {
-        const exerciseItem = document.createElement('div');
-        exerciseItem.classList.add('exercise-item');
-        exerciseItem.innerHTML = `
-          <strong>${exercise.name || 'Unnamed Exercise'}</strong>
-          <p>Burned calories: ${exercise.burnedCalories || 'N/A'}</p>
-          <p>Description: ${exercise.description || 'No description available'}</p>
-        `;
-        searchResults.appendChild(exerciseItem);
-      });
-
-      // Перевірка, чи є ще результати
-      if (response.data.results.length === 10) {
-        loadMoreButton.style.display = 'block'; // Показати кнопку "Load More"
-      } else {
-        loadMoreButton.style.display = 'none'; // Приховати, якщо більше сторінок немає
-      }
-    } else {
-      if (page === 1) {
-        searchResults.textContent = 'No exercises found.';
-      }
-      loadMoreButton.style.display = 'none';
+    // Якщо немає пошукового запиту, показуємо стандартні картки
+    if (!searchInput.value.trim()) {
+      defaultCards.style.display = "flex";
+      searchResults.style.display = "none";
     }
   } catch (error) {
-    console.error('Error fetching exercises:', error);
-    searchResults.textContent = 'An error occurred. Please try again.';
-    loadMoreButton.style.display = 'none';
+    console.error("Помилка під час запиту:", error);
+    searchResults.innerHTML = "<p>Сталася помилка. Спробуйте ще раз.</p>";
+    searchResults.style.display = "flex";
+    defaultCards.style.display = "none";
   }
 }
 
 // Обробка подій для кнопки пошуку
-searchButton.addEventListener('click', () => {
+searchButton.addEventListener("click", () => {
   const query = searchInput.value.trim();
   if (query) {
-    currentQuery = query; // Зберегти поточний пошуковий запит
-    currentPage = 1; // Скинути до першої сторінки
-    searchExercises(query, currentPage);
+    currentQuery = query;
+    const filteredExercises = filterExercises(currentQuery);
+    displayExercises(filteredExercises);
+  } else {
+    defaultCards.style.display = "flex";
+    searchResults.style.display = "none";
   }
 });
 
-// Обробка подій для кнопки "Load More"
-// loadMoreButton.addEventListener('click', () => {
-//   currentPage += 1; // Перейти на наступну сторінку
-//   searchExercises(currentQuery, currentPage);
-// });
+// Натискання Enter для пошуку
+searchInput.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchButton.click();
+  }
+});
 
-// Очищення результатів при очищенні поля пошуку
-searchInput.addEventListener('input', () => {
+// Очищення поля пошуку
+searchInput.addEventListener("input", () => {
   const query = searchInput.value.trim();
   if (!query) {
-    searchResults.innerHTML = '';
-    loadMoreButton.style.display = 'none';
+    defaultCards.style.display = "flex";
+    searchResults.style.display = "none";
   }
+});
+
+// Завантаження вправ при завантаженні сторінки
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAllExercises();
 });

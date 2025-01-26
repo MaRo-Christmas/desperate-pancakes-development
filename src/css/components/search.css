@@ -67,3 +67,8 @@
     }
   }
   
+  .search-button:hover .search-icon {
+    stroke: #007bff;
+    cursor: pointer;
+  }
+  
