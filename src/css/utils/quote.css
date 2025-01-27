@@ -180,27 +180,27 @@
         flex-wrap: nowrap;
         row-gap: 32px;
         justify-content: center;
-        max-width: 444px;
+        max-width: 426px;
         align-self: start;
         margin: 67px 0;
 
     }
 
     .quote-card {
-        width: 100%;
+        width: 426px;
         /* margin: 0; */
     }
 
     .image-wrapper {
         /* margin: 0; */
-        width: 100%;
+        width: 426px;
         max-width: none;
         height: 100%;
     
     }
 
     .goal-card {
-        width: 100%;
+        width: 426px;
     }
 
     .goal-description {
