@@ -4,6 +4,7 @@
   letter-spacing: -0.02em;
   color: #242424;
   margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .slash {
@@ -87,6 +88,7 @@
   font-size: 24px;
   line-height: 1.0;
   color: #f4f4f4;
+  font-weight: 400;
 }
 
 .card-text span {
@@ -136,6 +138,7 @@
   letter-spacing: 0.04em;
   color: #d4d4d4;
   text-align: center;
+  cursor: pointer;
 }
 
 .pagination-item.active {
@@ -148,7 +151,6 @@
 
 @media screen and (min-width: 768px) {
   .main-section-title {
-    position: absolute;
     font-size: 44px;
     line-height: 1.09;
     letter-spacing: -0.02em;
@@ -192,11 +194,35 @@
     height: 48px;
   }
 
+  .category-btn:hover {
+    color: #242424;
+  }
+
+  .card-item {
+    transition: transform .2s;
+  }
+
+  .card-item:hover {
+    transform: scale(1.1);
+  }
+
   .card-wrapper {
     width: 335px;
   }
 
   .card-wrapper img {
     height: 100%;
+  }
+
+  .exercises-list .workout-start {
+    transition: transform .2s;
+  }
+
+  .exercises-list .workout-start:hover {
+    transform: scale(1.1);
+  }
+
+  .pagination-item:hover {
+    color: #242424;
   }
 }
