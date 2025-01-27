@@ -16,7 +16,7 @@ export async function getExercisesByFilter(filter, page, limit) {
   } catch (error) {
     iziToast.error({
       title: 'Error',
-      message: error.message,
+      message: 'Something went wrong! Please try again later!',
       position: 'topRight',
       timeout: 4000,
     })
@@ -31,6 +31,8 @@ export async function searchExercises(params) {
     iziToast.error({
       title: 'Error',
       message: 'Something went wrong! Please try again later!',
+      position: 'topRight',
+      timeout: 4000,
     })
   }
 }

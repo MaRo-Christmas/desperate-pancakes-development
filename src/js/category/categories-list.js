@@ -24,7 +24,7 @@ const exercisesCardsList = document.querySelector('.exercises-list')
 const paginationRef = document.getElementById('pagination');
 
 btnsListRef.addEventListener("click", (e) => handleClickOnFilterBtn(e));
-categoriesCardslistRef.addEventListener('click', (e) => handleClickOnCard(e))
+exercisesCardsList.addEventListener('click', (e) => handleModalWindow(e))
 paginationRef.addEventListener("click", (e) => handlePaginationClick(e));
 
 function addEventListenerOnCard() {

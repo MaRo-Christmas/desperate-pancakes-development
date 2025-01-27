@@ -19,24 +19,34 @@ searchButton.addEventListener('click', () => {
   if (query) {
     currentQuery = query; // Зберегти поточний пошуковий запит
     currentPage = 1; // Скинути до першої сторінки
-    searchExercises({[category.replace(/\s/g,'').toLowerCase()]: name, keyword: query}, currentPage).then(result => {
+    let param = category.replace(/\s/g,'').toLowerCase();
+    if(category === 'Body parts') {
+      param = param.slice(0, -1)
+    }
+    searchExercises({[param]: name, keyword: query}, currentPage).then(result => {
       console.log(result)
       if(result.results.length) {
         renderListOfCards(result.results, createExerciseCard, exercisesCardsList);
         renderPagination(result.totalPages)
       } else {
-        exercisesCardsList.innerHTML = '<li>No Results</li>';
+        exercisesCardsList.innerHTML = '<li class="text-exer"><p>No Results</p></li>';
         paginationRef.innerHTML = '';
       }
+    }).catch(error => {
+      iziToast.error({
+        title: 'Error',
+        message: 'Something went wrong! Please try again later!',
+      })
     });
   }
+  searchInput.value = '';
 });
 
-// Очищення результатів при очищенні поля пошуку
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.trim();
-  if (!query) {
-    searchResults.innerHTML = '';
-    loadMoreButton.style.display = 'none';
-  }
-});
+// // Очищення результатів при очищенні поля пошуку
+// searchInput.addEventListener('input', () => {
+//   const query = searchInput.value.trim();
+//   if (!query) {
+//     searchResults.innerHTML = '';
+//     loadMoreButton.style.display = 'none';
+//   }
+// });
