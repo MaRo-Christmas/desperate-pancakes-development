@@ -176,6 +176,10 @@
     display: inline-block;
     margin-right: 10px;
   }
+/* changes */
+  .footer-copyright {
+    margin-right: 32px;
+  }
 
   .footer-subscribe {
     margin-left: 270px;
@@ -249,7 +253,7 @@
 
   .footer-bottom-text {
     /* 122px */
-    margin-right: 100px; 
+    margin-right: 85px; 
   }
 /* changes */
   .footer-bottom-links {
@@ -258,6 +262,6 @@
 
   .footer-copyright {
     /* 0 */
-    margin-left: -160px;
+    margin-left: -165px;
   }
 }
