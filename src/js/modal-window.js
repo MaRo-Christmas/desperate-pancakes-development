@@ -1,20 +1,10 @@
+
 import axios from 'axios';
 
 const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
 let currentExerciseId = null;
 let removeFromFavorites = false;
-
-export const fetchExercisesRequest = async (id) => {
-  try {
-    const response = await axios.get(BASE_URL + id);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data', error);
-    throw error;
-  }
-};
-
-const fetchExercises = await fetchExercisesRequest('64f389465ae26083f39b17a2');
+let fetchExercises;
 
 // Елементи модального вікна з вправами
 const modalWindow = document.querySelector('.modal-overlay');
@@ -42,6 +32,7 @@ function removeModalEventListeners() {
   closeButton.removeEventListener('click', closeModal);
   modalWindow.removeEventListener('click', modalOutsideClick);
   document.removeEventListener('keydown', modalKeydown);
+  addToFavorites.removeEventListener('click', resetFavorites);
 }
 
 function closeModal() {
@@ -63,11 +54,17 @@ function modalKeydown(event) {
   }
 }
 
+function resetFavorites() {
+  removeFromFavorites = false;
+  currentExerciseId = null;
+  rate = 0;
+}
+
 closeButton.addEventListener('click', closeModal);
 modalWindow.addEventListener('click', modalOutsideClick);
 document.addEventListener('keydown', modalKeydown);
 
-function toggleFromFavorites() {
+function toggleFromFavorites(id) {
   const favorites = JSON.parse(window.localStorage.getItem('favorites'));
   if (favorites && favorites.length && favorites.includes(fetchExercises._id)) {
     removeFromFavorites = true;
@@ -84,64 +81,6 @@ function toggleFromFavorites() {
   }
 }
 
-toggleFromFavorites();
-
-addToFavorites.addEventListener('click', () => {
-  const storage = JSON.parse(window.localStorage.getItem('favorites'));
-  if (!storage || !storage.length) {
-    window.localStorage.setItem('favorites', JSON.stringify([fetchExercises._id]));
-  } else if (!storage.includes(fetchExercises._id)) {
-    window.localStorage.setItem('favorites', JSON.stringify([...storage, fetchExercises._id]));
-  }
-  if (removeFromFavorites) {
-    const updatedFavorites = storage.filter((item) => item !== fetchExercises._id);
-    window.localStorage.setItem('favorites', JSON.stringify([...updatedFavorites]));
-  }
-  toggleFromFavorites(JSON.parse(window.localStorage.getItem('favorites')), 'click');
-});
-
-exerciseGif.src = fetchExercises['gifUrl'] || '../images/gif.jpg';
-exerciseName.innerText = fetchExercises['name'] || '';
-
-const score = Math.round(fetchExercises['rating']);
-const starRatingWidth = score * 20 + 20;
-ratingStars.style.setProperty('width', `${starRatingWidth}px`, 'important');
-ratingScore.innerText = `${score}.0`;
-
-const targetsInfoObj = {
-  target: {
-    title: 'Target',
-    subtitle: fetchExercises.target,
-  },
-  bodyPart: {
-    title: 'Body Part',
-    subtitle: fetchExercises.bodyPart,
-  },
-  equipment: {
-    title: 'Equipment',
-    subtitle: fetchExercises.equipment,
-  },
-  popularity: {
-    title: 'Popular',
-    subtitle: fetchExercises.popularity,
-  },
-  burnedCalories: {
-    title: 'Burned calories',
-    subtitle: `${fetchExercises.burnedCalories}/${fetchExercises.time}`,
-  },
-};
-
-
-targetsList.innerHTML = Object.keys(targetsInfoObj).map((item) =>
-  `<li class='modal-info-targets-list-item'>
-    <div class='modal-info-targets-list-item-container'>
-    <p class='modal-info-targets-list-item-container-title'>${targetsInfoObj[item]['title']}</p>
-    <p class='modal-info-targets-list-item-container-subtitle'>${targetsInfoObj[item]['subtitle']}</p>
-    </div>
-  </li>`).join('');
-
-description.innerHTML = `<p>${fetchExercises['description']}</p>`;
-
 // ______________________ADD RATING LOGIC______________________________________________________________
 function closeRating() {
   ratingWindow.classList.add('hide-window');
@@ -151,7 +90,7 @@ function closeRating() {
 }
 
 async function patchRating(data) {
-  const url = BASE_URL + '64f389465ae26083f39b17a2' + '/rating';
+  const url = BASE_URL + currentExerciseId + '/rating';
 
   try {
     const response = await fetch(url, {
@@ -230,4 +169,83 @@ form.addEventListener('submit', function(event) {
   }
 });
 
+const fetchExercisesRequest = async (id) => {
+  try {
+    const response = await axios.get(BASE_URL + id);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data', error);
+    throw error;
+  }
+};
 
+export async function handleModalWindow(e) {
+  const startButton = e.target.classList.contains('workout-start');
+  if (!startButton) return;
+
+  if (e.target.matches('[data-modal-open]')) {
+    currentExerciseId = e.target.getAttribute('data-modal-open');
+    if (currentExerciseId.length) {
+      fetchExercises = await fetchExercisesRequest(currentExerciseId);
+      if (fetchExercises) {
+        toggleFromFavorites(fetchExercises['_id']);
+        addToFavorites.addEventListener('click', () => {
+          const storage = JSON.parse(window.localStorage.getItem('favorites'));
+          if (!storage || !storage.length) {
+            window.localStorage.setItem('favorites', JSON.stringify([fetchExercises['_id']]));
+          } else if (!storage.includes(fetchExercises['_id'])) {
+            window.localStorage.setItem('favorites', JSON.stringify([...storage, fetchExercises['_id']]));
+          }
+          if (removeFromFavorites) {
+            const updatedFavorites = storage.filter((item) => item !== fetchExercises['_id']);
+            window.localStorage.setItem('favorites', JSON.stringify([...updatedFavorites]));
+          }
+          toggleFromFavorites(fetchExercises['_id']);
+        });
+
+        exerciseGif.src = fetchExercises['gifUrl'] || '../images/gif.jpg';
+        exerciseName.innerText = fetchExercises['name'] || '';
+
+        const score = Math.round(fetchExercises['rating']);
+        const starRatingWidth = score * 20 + 20;
+        ratingStars.style.setProperty('width', `${starRatingWidth}px`, 'important');
+        ratingScore.innerText = `${score}.0`;
+
+        const targetsInfoObj = {
+          target: {
+            title: 'Target',
+            subtitle: fetchExercises.target,
+          },
+          bodyPart: {
+            title: 'Body Part',
+            subtitle: fetchExercises.bodyPart,
+          },
+          equipment: {
+            title: 'Equipment',
+            subtitle: fetchExercises.equipment,
+          },
+          popularity: {
+            title: 'Popular',
+            subtitle: fetchExercises.popularity,
+          },
+          burnedCalories: {
+            title: 'Burned calories',
+            subtitle: `${fetchExercises.burnedCalories}/${fetchExercises.time}`,
+          },
+        };
+
+
+        targetsList.innerHTML = Object.keys(targetsInfoObj).map((item) =>
+          `<li class='modal-info-targets-list-item'>
+    <div class='modal-info-targets-list-item-container'>
+    <p class='modal-info-targets-list-item-container-title'>${targetsInfoObj[item]['title']}</p>
+    <p class='modal-info-targets-list-item-container-subtitle'>${targetsInfoObj[item]['subtitle']}</p>
+    </div>
+  </li>`).join('');
+
+        description.innerHTML = `<p>${fetchExercises['description']}</p>`;
+        modalWindow.classList.add('is-open');
+      }
+    }
+  }
+}

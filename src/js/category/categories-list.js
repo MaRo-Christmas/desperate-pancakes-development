@@ -1,5 +1,7 @@
+
 import { getExercisesByFilter, searchExercises } from "../api/getExercises";
 import { createExerciseCard, createCart, renderListOfCards, renderPagination } from './render-cards';
+import { handleModalWindow } from '../modal-window.js';
 
 export let category = 'Muscles';
 export let name;
@@ -30,7 +32,7 @@ paginationRef.addEventListener("click", (e) => handlePaginationClick(e));
 function handleClickOnFilterBtn(e) {
   const isBtn = e.target.classList.contains("category-btn");
   if (!isBtn) return;
-  
+
   category = e.target.dataset.action;
 
   const btnsListAll = document.querySelectorAll(".category-btn");
@@ -88,7 +90,7 @@ function handlePaginationClick(e) {
     const limit = getLimitForRequest('exercises');
     searchExercises({[category.replace(/\s/g,'').toLowerCase()]: name, limit: limit, page: page}).then(result => {
       renderListOfCards(result.results, createExerciseCard, exercisesCardsList);
-      
+
     })
   } else {
     const limit = getLimitForRequest('categories');
@@ -97,14 +99,6 @@ function handlePaginationClick(e) {
       addEventListenerOnCard()
     });
   }
-}
-
-function handleModalWindow(e) {
-  const startButton = e.target.classList.contains('workout-start');
-  if (!startButton) return;
-    
-  const modalWindow = document.querySelector('.modal-overlay');
-  modalWindow.classList.add('is-open');
 }
 
 function addEventListenerOnCard() {
