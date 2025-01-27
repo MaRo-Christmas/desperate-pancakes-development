@@ -31,7 +31,7 @@ function removeModalEventListeners() {
   closeButton.removeEventListener('click', closeModal);
   modalWindow.removeEventListener('click', modalOutsideClick);
   document.removeEventListener('keydown', modalKeydown);
-  addToFavorites.removeEventListener('click', resetFavorites);
+  resetFields();
 }
 
 function closeModal() {
@@ -53,19 +53,41 @@ function modalKeydown(event) {
   }
 }
 
-function resetFavorites() {
+function resetFields() {
   removeFromFavorites = false;
   currentExerciseId = null;
   rate = 0;
 }
 
-closeButton.addEventListener('click', closeModal);
-modalWindow.addEventListener('click', modalOutsideClick);
-document.addEventListener('keydown', modalKeydown);
+function addEventListenersOnModal() {
+  closeButton.addEventListener('click', closeModal);
+  modalWindow.addEventListener('click', modalOutsideClick);
+  document.addEventListener('keydown', modalKeydown);
+}
+
+function handleAddToFavorites() {
+  addToFavorites.removeEventListener('click', addToFavoritesHandler);
+  addToFavorites.addEventListener('click', addToFavoritesHandler);
+}
+
+function addToFavoritesHandler(event) {
+  event.preventDefault();
+  const storage = JSON.parse(window.localStorage.getItem('favorites'));
+  if (!storage || !storage.length) {
+    window.localStorage.setItem('favorites', JSON.stringify([fetchExercises['_id']]));
+  } else if (!storage.includes(fetchExercises['_id'])) {
+    window.localStorage.setItem('favorites', JSON.stringify([...storage, fetchExercises['_id']]));
+  }
+  if (removeFromFavorites) {
+    const updatedFavorites = storage.filter((item) => item !== fetchExercises['_id']);
+    window.localStorage.setItem('favorites', JSON.stringify([...updatedFavorites]));
+  }
+  toggleFromFavorites(fetchExercises['_id']);
+}
 
 function toggleFromFavorites(id) {
   const favorites = JSON.parse(window.localStorage.getItem('favorites'));
-  if (favorites && favorites.length && favorites.includes(fetchExercises._id)) {
+  if (favorites && favorites.length && favorites.includes(id)) {
     removeFromFavorites = true;
     addToFavorites.innerHTML = `Remove from favorites
                         <svg class='add-to-favorites-icon'>
@@ -81,11 +103,65 @@ function toggleFromFavorites(id) {
 }
 
 // ______________________ADD RATING LOGIC______________________________________________________________
+
+function openRating() {
+  exercisesWindow.classList.add('hide-window');
+  setTimeout(() => {
+    ratingWindow.classList.remove('hide-window');
+  }, 150);
+}
+
 function closeRating() {
   ratingWindow.classList.add('hide-window');
   setTimeout(() => {
     exercisesWindow.classList.remove('hide-window');
+    form.reset();
+    scoreValue.innerText = '0.0';
+    radioButtons.forEach((star) => {
+      star.classList.remove('checked-rating');
+    });
   }, 150);
+}
+
+function setRatingScore(event) {
+  event.preventDefault();
+  rate = event.target.value;
+  scoreValue.innerText = `${rate}.0`;
+  radioButtons.forEach((star) => {
+    if (Number(star.value) <= Number(rate)) {
+      star.classList.add('checked-rating');
+    } else {
+      star.classList.remove('checked-rating');
+    }
+  });
+}
+
+function submitRatingForm(event) {
+  event.preventDefault();
+  const formData = new FormData(form);
+  const formObject = Object.fromEntries(formData.entries());
+  const emailPattern = /^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  if (formObject.email && !emailPattern.test(formObject.email.toString())) {
+    errorLabel.innerText = 'Invalid email format';
+    return;
+  }
+
+  if (rate) {
+    formObject['rate'] = Number(rate);
+  }
+
+  if (formObject['rate'] && formObject['email'] && formObject['review']) {
+    errorLabel.innerText = '';
+    patchRating(formObject);
+  } else {
+    if (!formObject['rate']) {
+      errorLabel.innerText = 'Please give a rating';
+    } else if (!formObject['email']) {
+      errorLabel.innerText = 'Please fill in your email';
+    } else if (!formObject['review']) {
+      errorLabel.innerText = 'Please fill in your comment';
+    }
+  }
 }
 
 async function patchRating(data) {
@@ -115,58 +191,21 @@ async function patchRating(data) {
   }
 }
 
-giveRating.addEventListener('click', () => {
-  exercisesWindow.classList.add('hide-window');
-  setTimeout(() => {
-    ratingWindow.classList.remove('hide-window');
-  }, 150);
-});
-
-closeRatingButton.addEventListener('click', () => {
-  closeRating();
-});
-
-radioButtons.forEach((radio) => {
-  radio.addEventListener('change', (event) => {
-    rate = event.target.value;
-    scoreValue.innerText = `${rate}.0`;
-    radioButtons.forEach((star) => {
-      if (Number(star.value) <= Number(rate)) {
-        star.classList.add('checked-rating');
-      } else {
-        star.classList.remove('checked-rating');
-      }
-    });
+function addEventListenersOnRatingForm() {
+  giveRating.removeEventListener('click', openRating);
+  closeRatingButton.removeEventListener('click', closeRating);
+  form.removeEventListener('submit', submitRatingForm);
+  radioButtons.forEach((radio) => {
+    radio.removeEventListener('change', setRatingScore);
   });
-});
 
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-  const formData = new FormData(form);
-  const formObject = Object.fromEntries(formData.entries());
-  const emailPattern = /^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-  if (formObject.email && !emailPattern.test(formObject.email.toString())) {
-    errorLabel.innerText = 'Invalid email format';
-    return;
-  }
-
-  if (rate) {
-    formObject['rate'] = Number(rate);
-  }
-
-  if (formObject['rate'] && formObject['email'] && formObject['review']) {
-    errorLabel.innerText = '';
-    patchRating(formObject);
-  } else {
-    if (!formObject['rate']) {
-      errorLabel.innerText = 'Please give a rating';
-    } else if (!formObject['email']) {
-      errorLabel.innerText = 'Please fill in your email';
-    } else if (!formObject['review']) {
-      errorLabel.innerText = 'Please fill in your comment';
-    }
-  }
-});
+  giveRating.addEventListener('click', openRating);
+  closeRatingButton.addEventListener('click', closeRating);
+  form.addEventListener('submit', submitRatingForm);
+  radioButtons.forEach((radio) => {
+    radio.addEventListener('change', setRatingScore);
+  });
+}
 
 const fetchExercisesRequest = async (id) => {
   try {
@@ -179,32 +218,18 @@ const fetchExercisesRequest = async (id) => {
 };
 
 export async function handleModalWindow(e) {
-  const startButton = e.target.classList.contains('workout-start');
-  if (!startButton) return;
-
   if (e.target.matches('[data-modal-open]')) {
     currentExerciseId = e.target.getAttribute('data-modal-open');
     if (currentExerciseId.length) {
       fetchExercises = await fetchExercisesRequest(currentExerciseId);
       if (fetchExercises) {
+        addEventListenersOnModal();
+        addEventListenersOnRatingForm();
         toggleFromFavorites(fetchExercises['_id']);
-        addToFavorites.addEventListener('click', () => {
-          const storage = JSON.parse(window.localStorage.getItem('favorites'));
-          if (!storage || !storage.length) {
-            window.localStorage.setItem('favorites', JSON.stringify([fetchExercises['_id']]));
-          } else if (!storage.includes(fetchExercises['_id'])) {
-            window.localStorage.setItem('favorites', JSON.stringify([...storage, fetchExercises['_id']]));
-          }
-          if (removeFromFavorites) {
-            const updatedFavorites = storage.filter((item) => item !== fetchExercises['_id']);
-            window.localStorage.setItem('favorites', JSON.stringify([...updatedFavorites]));
-          }
-          toggleFromFavorites(fetchExercises['_id']);
-        });
+        handleAddToFavorites();
 
         exerciseGif.src = fetchExercises['gifUrl'] || '../images/gif.jpg';
         exerciseName.innerText = fetchExercises['name'] || '';
-
         const score = Math.round(fetchExercises['rating']);
         const starRatingWidth = score * 20 + 20;
         ratingStars.style.setProperty('width', `${starRatingWidth}px`, 'important');
@@ -232,7 +257,6 @@ export async function handleModalWindow(e) {
             subtitle: `${fetchExercises.burnedCalories}/${fetchExercises.time}`,
           },
         };
-
 
         targetsList.innerHTML = Object.keys(targetsInfoObj).map((item) =>
           `<li class='modal-info-targets-list-item'>
