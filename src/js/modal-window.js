@@ -22,7 +22,7 @@ const giveRating = document.querySelector('.give-a-rating');
 const ratingWindow = document.querySelector('.rating');
 const form = document.getElementById('userForm');
 const closeRatingButton = document.querySelector('.modal-close-rating-button');
-const radioButtons = document.querySelectorAll('input[name="custom-radio"]');
+const radioButtons = document.querySelectorAll('.custom-radio-star');
 const scoreValue = document.querySelector('.modal-rating-block-score-value');
 const errorLabel = document.querySelector('.modal-error-label-text');
 let rate;
@@ -114,12 +114,12 @@ function openRating() {
 function closeRating() {
   ratingWindow.classList.add('hide-window');
   setTimeout(() => {
-    exercisesWindow.classList.remove('hide-window');
-    form.reset();
     scoreValue.innerText = '0.0';
     radioButtons.forEach((star) => {
       star.classList.remove('checked-rating');
     });
+    exercisesWindow.classList.remove('hide-window');
+    form.reset();
   }, 150);
 }
 
@@ -196,14 +196,14 @@ function addEventListenersOnRatingForm() {
   closeRatingButton.removeEventListener('click', closeRating);
   form.removeEventListener('submit', submitRatingForm);
   radioButtons.forEach((radio) => {
-    radio.removeEventListener('change', setRatingScore);
+    radio.removeEventListener('click', setRatingScore);
   });
 
   giveRating.addEventListener('click', openRating);
   closeRatingButton.addEventListener('click', closeRating);
   form.addEventListener('submit', submitRatingForm);
   radioButtons.forEach((radio) => {
-    radio.addEventListener('change', setRatingScore);
+    radio.addEventListener('click', setRatingScore);
   });
 }
 
