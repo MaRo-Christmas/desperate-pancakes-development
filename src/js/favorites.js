@@ -120,7 +120,8 @@ function removeExerciseFromFavoritesWithAnimation(exerciseId) {
     }
   }, 300);
 }
-
+// щоб картки візуально оновлялися після видалення з модального вікна
+window.removeExerciseFromFavoritesWithAnimation = removeExerciseFromFavoritesWithAnimation;
 // Обробник подій для видалення вправи
 document.getElementById('wrapper-secnd').addEventListener('click', event => {
   const trashIcon = event.target.closest('.trash-icon');
@@ -138,15 +139,6 @@ document.addEventListener(
 
 // модальне вікно при натисненні Start
 
-// document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
-//  // Знаходимо кнопку "Start" за атрибутом data-modal-open
-//   const startButton = event.target.closest('[data-modal-open]');
-//   if (startButton) {
-//    // Відкриття модального вікна
-//    const modalWindow = document.querySelector('.modal-overlay'); // Знаходимо контейнер модального вікна
-//    modalWindow.classList.add('is-open'); // Додаємо клас для його відкриття
-//  }
-// });
 document
   .getElementById('wrapper-secnd')
   .addEventListener('click', async event => {

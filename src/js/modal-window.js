@@ -81,6 +81,10 @@ function addToFavoritesHandler(event) {
   if (removeFromFavorites) {
     const updatedFavorites = storage.filter((item) => item !== fetchExercises['_id']);
     window.localStorage.setItem('favorites', JSON.stringify([...updatedFavorites]));
+    // Перевірка, чи доступна функція перед викликом
+    if (typeof window.removeExerciseFromFavoritesWithAnimation === 'function') {
+      window.removeExerciseFromFavoritesWithAnimation(fetchExercises['_id']); // Виклик функції тільки якщо вона є
+    }
   }
   toggleFromFavorites(fetchExercises['_id']);
 }
