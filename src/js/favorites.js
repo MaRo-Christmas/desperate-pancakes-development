@@ -1,6 +1,6 @@
 import icons from '../images/icons.svg';
 import axios from 'axios';
-
+import { handleModalWindow } from './modal-window.js';
 
 function capitalizeFirstLetter(str) {
  if (str && typeof str === 'string') {
@@ -121,12 +121,22 @@ document.addEventListener('DOMContentLoaded', createExerciseCardsFromLocalStorag
 
 // модальне вікно при натисненні Start
 
-document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
- // Знаходимо кнопку "Start" за атрибутом data-modal-open
+// document.getElementById('wrapper-secnd').addEventListener('click', (event) => {
+//  // Знаходимо кнопку "Start" за атрибутом data-modal-open
+//   const startButton = event.target.closest('[data-modal-open]');
+//   if (startButton) {
+//    // Відкриття модального вікна
+//    const modalWindow = document.querySelector('.modal-overlay'); // Знаходимо контейнер модального вікна
+//    modalWindow.classList.add('is-open'); // Додаємо клас для його відкриття
+//  }
+// });
+document.getElementById('wrapper-secnd').addEventListener('click', async (event) => {
+  // Знаходимо кнопку "Start" за атрибутом data-modal-open
   const startButton = event.target.closest('[data-modal-open]');
+  
   if (startButton) {
-   // Відкриття модального вікна
-   const modalWindow = document.querySelector('.modal-overlay'); // Знаходимо контейнер модального вікна
-   modalWindow.classList.add('is-open'); // Додаємо клас для його відкриття
- }
+    // Викликаємо функцію handleModalWindow, щоб завантажити дані та відкрити модальне вікно
+    await handleModalWindow(event);
+  }
 });
+window.createExerciseCardsFromLocalStorage = createExerciseCardsFromLocalStorage;
