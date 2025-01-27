@@ -32,6 +32,10 @@ exercisesCardsList.addEventListener('click', (e) => {
 );
 paginationRef.addEventListener("click", (e) => handlePaginationClick(e));
 
+function addEventListenerOnCard() {
+  const categoriesCardsRef = document.querySelectorAll(".card-item");
+  categoriesCardsRef.forEach(el => el.addEventListener("click", (e) => handleClickOnCard(e)))
+}
 
 function handleClickOnFilterBtn(e) {
   const isBtn = e.target.classList.contains("category-btn");
@@ -103,11 +107,6 @@ function handlePaginationClick(e) {
       addEventListenerOnCard()
     });
   }
-}
-
-function addEventListenerOnCard() {
-  const categoriesCardsRef = document.querySelectorAll(".card-item");
-  categoriesCardsRef.forEach(el => el.addEventListener("click", (e) => handleClickOnCard(e)))
 }
 
 function getLimitForRequest(type) {
