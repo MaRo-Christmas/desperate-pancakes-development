@@ -139,4 +139,4 @@ document.getElementById('wrapper-secnd').addEventListener('click', async (event)
     await handleModalWindow(event);
   }
 });
-window.createExerciseCardsFromLocalStorage = createExerciseCardsFromLocalStorage;
+
