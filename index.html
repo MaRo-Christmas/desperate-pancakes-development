@@ -61,7 +61,7 @@
             </a>
           </li>
         </ul>
-        <button type="button" class="menu-btn" onclick="openMenu()">
+        <button type="button" class="menu-btn" aria-label="menu" onclick="openMenu()">
             <svg width="32" height="32">
               <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#burger-menu"></use>
             </svg>
@@ -229,7 +229,7 @@
 
       <div class='modal-overlay'>
   <div class='modal exercise'>
-    <button class='modal-close-button' type='button'>
+    <button class='modal-close-button' type='button' aria-label="close">
       <svg class='modal-close-icon'>
         <use href='/desperate-pancakes-development/assets/modal-window-sprite-CFSQQOow.svg#icon-close-white'></use>
       </svg>
@@ -252,16 +252,16 @@
         </div>
         <div class='modal-info-description'></div>
         <div class='modal-info-buttons'>
-          <button type='button' class='add-to-favorites'>
+          <button type='button' class='add-to-favorites' aria-label="add">
           </button>
-          <button type='button' class='give-a-rating'>Give a rating</button>
+          <button type='button' class='give-a-rating' aria-label="rating">Give a rating</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class='modal rating hide-window'>
-    <button class='modal-close-rating-button' type='button'>
+    <button class='modal-close-rating-button' type='button' aria-label="close-rating">
       <svg class='modal-close-icon'>
         <use href='/desperate-pancakes-development/assets/modal-window-sprite-CFSQQOow.svg#icon-close-white'></use>
       </svg>
@@ -321,7 +321,7 @@
                         id='review'></textarea>
             </div>
             <div class='modal-error-label-text'></div>
-            <button class='modal-form-button' type='submit'>
+            <button class='modal-form-button' type='submit' aria-label="submit-form">
               Send
             </button>
           </form>
@@ -362,17 +362,17 @@
 </div>
       <ul class="categories-btns-list">
         <li class="categories-btns-item">
-          <button class="category-btn active" type="button" data-action="Muscles">
+          <button class="category-btn active" type="button" aria-label="muscles" data-action="Muscles">
             Muscles
           </button>
         </li>
         <li class="categories-btns-item">
-          <button class="category-btn" type="button" data-action="Body parts">
+          <button class="category-btn" type="button" aria-label="parts" data-action="Body parts">
             Body parts
           </button>
         </li>
         <li class="categories-btns-item">
-          <button class="category-btn" type="button" data-action="Equipment">
+          <button class="category-btn" type="button" aria-label="equipment" data-action="Equipment">
             Equipment
           </button>
         </li>
@@ -517,7 +517,7 @@
             pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
             title="Please enter a valid email address (e.g., user@example.com)"
           />
-          <button class="footer-button" type="submit">Send</button>
+          <button class="footer-button" type="submit" aria-label="submit-btn">Send</button>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <div class='modal-overlay'>
   <div class='modal exercise'>
-    <button class='modal-close-button' type='button'>
+    <button class='modal-close-button' type='button' aria-label="close">
       <svg class='modal-close-icon'>
         <use href='./images/modal-window-sprite.svg#icon-close-white'></use>
       </svg>
@@ -23,16 +23,16 @@
         </div>
         <div class='modal-info-description'></div>
         <div class='modal-info-buttons'>
-          <button type='button' class='add-to-favorites'>
+          <button type='button' class='add-to-favorites' aria-label="add">
           </button>
-          <button type='button' class='give-a-rating'>Give a rating</button>
+          <button type='button' class='give-a-rating' aria-label="rating">Give a rating</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class='modal rating hide-window'>
-    <button class='modal-close-rating-button' type='button'>
+    <button class='modal-close-rating-button' type='button' aria-label="close-rating">
       <svg class='modal-close-icon'>
         <use href='./images/modal-window-sprite.svg#icon-close-white'></use>
       </svg>
@@ -92,7 +92,7 @@
                         id='review'></textarea>
             </div>
             <div class='modal-error-label-text'></div>
-            <button class='modal-form-button' type='submit'>
+            <button class='modal-form-button' type='submit' aria-label="submit-form">
               Send
             </button>
           </form>
