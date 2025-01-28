@@ -179,10 +179,6 @@
     flex-basis: calc((100% - 2 * 15px) / 3);
   }
 
-  .card-wrapper img {
-    height: 100%;
-  }
-
   .exercises-list {
     flex-direction: row;
     flex-wrap: wrap;
@@ -213,15 +209,6 @@
 
   .card-item:hover {
     transform: scale(1.1);
-  }
-
-  .card-wrapper {
-    width: 100%;
-  }
-
-  .card-wrapper img {
-    width: 100%;
-    height: 100%;
   }
 
   .exercises-list .workout-start {
