@@ -223,8 +223,6 @@ const fetchExercisesRequest = async (id) => {
 };
 
 export async function handleModalWindow(e) {
-  console.log(e.target)
-  console.log(e.currentTarget)
   if (e.target.matches('[data-modal-open]')) {
     currentExerciseId = e.target.getAttribute('data-modal-open');
     if (currentExerciseId.length) {
