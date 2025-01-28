@@ -1,4 +1,5 @@
 import axios from 'axios';
+import icons from '../images/modal-window-sprite.svg';
 
 const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
 let currentExerciseId = null;
@@ -95,13 +96,13 @@ function toggleFromFavorites(id) {
     removeFromFavorites = true;
     addToFavorites.innerHTML = `Remove from favorites
                         <svg class='add-to-favorites-icon'>
-                            <use href='../images/modal-window-sprite.svg#icon-trash'></use>
+                            <use href='${icons}#icon-trash'></use>
                         </svg>`;
   } else {
     removeFromFavorites = false;
     addToFavorites.innerHTML = `Add to favorites
                         <svg class='add-to-favorites-icon'>
-                            <use href='../images/modal-window-sprite.svg#icon-heart-favorites'></use>
+                            <use href='${icons}#icon-heart-favorites'></use>
                         </svg>`;
   }
 }
@@ -222,6 +223,8 @@ const fetchExercisesRequest = async (id) => {
 };
 
 export async function handleModalWindow(e) {
+  console.log(e.target)
+  console.log(e.currentTarget)
   if (e.target.matches('[data-modal-open]')) {
     currentExerciseId = e.target.getAttribute('data-modal-open');
     if (currentExerciseId.length) {
