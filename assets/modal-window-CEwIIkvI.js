@@ -10,4 +10,4 @@ import{a as M}from"./vendor-CQpva9gi.js";(function(){const e=document.createElem
     <p class='modal-info-targets-list-item-container-subtitle'>${i[r].subtitle}</p>
     </div>
   </li>`).join(""),_.innerHTML=`<p>${n.description}</p>`,c.classList.add("is-open")}}export{X as h,V as i};
-//# sourceMappingURL=modal-window-CqhDkQfR.js.map
+//# sourceMappingURL=modal-window-CEwIIkvI.js.map
