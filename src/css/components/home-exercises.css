@@ -44,7 +44,7 @@
   position: absolute;
   display: block;
   left: 0;
-  bottom: -1px;
+  bottom: -8px;
   width: 100%;
   height: 4px;
   border-radius: 2px;
@@ -178,13 +178,17 @@
     flex-basis: calc((100% - 2 * 15px) / 3);
   }
 
+  .card-wrapper img {
+    height: 100%;
+  }
+
   .exercises-list {
     flex-direction: row;
     flex-wrap: wrap;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1440px) {
   .main-section-title {
     position: absolute;
   }
@@ -207,10 +211,11 @@
   }
 
   .card-wrapper {
-    width: 335px;
+    width: 100%;
   }
 
   .card-wrapper img {
+    width: 100%;
     height: 100%;
   }
 

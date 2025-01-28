@@ -1,4 +1,5 @@
 import axios from 'axios';
+import icons from '../images/modal-window-sprite.svg';
 
 const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
 let currentExerciseId = null;
@@ -74,16 +75,28 @@ function addToFavoritesHandler(event) {
   event.preventDefault();
   const storage = JSON.parse(window.localStorage.getItem('favorites'));
   if (!storage || !storage.length) {
-    window.localStorage.setItem('favorites', JSON.stringify([fetchExercises['_id']]));
+    window.localStorage.setItem(
+      'favorites',
+      JSON.stringify([fetchExercises['_id']])
+    );
   } else if (!storage.includes(fetchExercises['_id'])) {
-    window.localStorage.setItem('favorites', JSON.stringify([...storage, fetchExercises['_id']]));
+    window.localStorage.setItem(
+      'favorites',
+      JSON.stringify([...storage, fetchExercises['_id']])
+    );
   }
   if (removeFromFavorites) {
-    const updatedFavorites = storage.filter((item) => item !== fetchExercises['_id']);
-    window.localStorage.setItem('favorites', JSON.stringify([...updatedFavorites]));
+    const updatedFavorites = storage.filter(
+      item => item !== fetchExercises['_id']
+    );
+    window.localStorage.setItem(
+      'favorites',
+      JSON.stringify([...updatedFavorites])
+    );
     // Перевірка, чи доступна функція перед викликом
     if (typeof window.removeExerciseFromFavoritesWithAnimation === 'function') {
       window.removeExerciseFromFavoritesWithAnimation(fetchExercises['_id']); // Виклик функції тільки якщо вона є
+      closeModal(); //модальне вікно закривається після натискання кнопки remove exercise
     }
   }
   toggleFromFavorites(fetchExercises['_id']);
@@ -95,13 +108,13 @@ function toggleFromFavorites(id) {
     removeFromFavorites = true;
     addToFavorites.innerHTML = `Remove from favorites
                         <svg class='add-to-favorites-icon'>
-                            <use href='../images/modal-window-sprite.svg#icon-trash'></use>
+                            <use href='${icons}#icon-trash'></use>
                         </svg>`;
   } else {
     removeFromFavorites = false;
     addToFavorites.innerHTML = `Add to favorites
                         <svg class='add-to-favorites-icon'>
-                            <use href='../images/modal-window-sprite.svg#icon-heart-favorites'></use>
+                            <use href='${icons}#icon-heart-favorites'></use>
                         </svg>`;
   }
 }
@@ -119,7 +132,7 @@ function closeRating() {
   ratingWindow.classList.add('hide-window');
   setTimeout(() => {
     scoreValue.innerText = '0.0';
-    radioButtons.forEach((star) => {
+    radioButtons.forEach(star => {
       star.classList.remove('checked-rating');
     });
     exercisesWindow.classList.remove('hide-window');
@@ -131,7 +144,7 @@ function setRatingScore(event) {
   event.preventDefault();
   rate = event.target.value;
   scoreValue.innerText = `${rate}.0`;
-  radioButtons.forEach((star) => {
+  radioButtons.forEach(star => {
     if (Number(star.value) <= Number(rate)) {
       star.classList.add('checked-rating');
     } else {
@@ -199,19 +212,19 @@ function addEventListenersOnRatingForm() {
   giveRating.removeEventListener('click', openRating);
   closeRatingButton.removeEventListener('click', closeRating);
   form.removeEventListener('submit', submitRatingForm);
-  radioButtons.forEach((radio) => {
+  radioButtons.forEach(radio => {
     radio.removeEventListener('click', setRatingScore);
   });
 
   giveRating.addEventListener('click', openRating);
   closeRatingButton.addEventListener('click', closeRating);
   form.addEventListener('submit', submitRatingForm);
-  radioButtons.forEach((radio) => {
+  radioButtons.forEach(radio => {
     radio.addEventListener('click', setRatingScore);
   });
 }
 
-const fetchExercisesRequest = async (id) => {
+const fetchExercisesRequest = async id => {
   try {
     const response = await axios.get(BASE_URL + id);
     return response.data;
@@ -222,6 +235,8 @@ const fetchExercisesRequest = async (id) => {
 };
 
 export async function handleModalWindow(e) {
+  console.log(e.target)
+  console.log(e.currentTarget)
   if (e.target.matches('[data-modal-open]')) {
     currentExerciseId = e.target.getAttribute('data-modal-open');
     if (currentExerciseId.length) {
@@ -236,7 +251,11 @@ export async function handleModalWindow(e) {
         exerciseName.innerText = fetchExercises['name'] || '';
         const score = Math.round(fetchExercises['rating']);
         const starRatingWidth = score * 20 + 20;
-        ratingStars.style.setProperty('width', `${starRatingWidth}px`, 'important');
+        ratingStars.style.setProperty(
+          'width',
+          `${starRatingWidth}px`,
+          'important'
+        );
         ratingScore.innerText = `${score}.0`;
 
         const targetsInfoObj = {
@@ -262,13 +281,17 @@ export async function handleModalWindow(e) {
           },
         };
 
-        targetsList.innerHTML = Object.keys(targetsInfoObj).map((item) =>
-          `<li class='modal-info-targets-list-item'>
+        targetsList.innerHTML = Object.keys(targetsInfoObj)
+          .map(
+            item =>
+              `<li class='modal-info-targets-list-item'>
     <div class='modal-info-targets-list-item-container'>
     <p class='modal-info-targets-list-item-container-title'>${targetsInfoObj[item]['title']}</p>
     <p class='modal-info-targets-list-item-container-subtitle'>${targetsInfoObj[item]['subtitle']}</p>
     </div>
-  </li>`).join('');
+  </li>`
+          )
+          .join('');
 
         description.innerHTML = `<p>${fetchExercises['description']}</p>`;
         modalWindow.classList.add('is-open');
@@ -276,5 +299,3 @@ export async function handleModalWindow(e) {
     }
   }
 }
-
-
