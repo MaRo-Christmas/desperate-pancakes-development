@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Power yourself with our best exercises" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <title>Your energy</title>
+    <script type="module" crossorigin src="/desperate-pancakes-development/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/desperate-pancakes-development/assets/vendor-CQpva9gi.js">
+    <link rel="modulepreload" crossorigin href="/desperate-pancakes-development/assets/modal-window-CqhDkQfR.js">
+    <link rel="stylesheet" crossorigin href="/desperate-pancakes-development/assets/vendor-BfMlxmOj.css">
+    <link rel="stylesheet" crossorigin href="/desperate-pancakes-development/assets/modal-window-D72OMlXm.css">
+  </head>
+  <body>
+    <!--header -->
+    <main class="main">
+      <!-- All partials -->
+      <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a class="logo" href="./index.html" rel="noopener noreferrer" aria-label="YOUR ENERGY">
+          <svg width="132" height="24">
+            <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#logo"></use>
+          </svg>
+        </a>
+        <ul class="menu-items">
+          <li class="menu-item active">
+            <a class="menu-link" href="./index.html">Home</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="./favorites.html">Favorites</a>
+          </li>
+        </ul>
+        <ul class="socials">
+          <li class="social-item">
+            <a href="https://www.facebook.com/goITclub/" rel="noopener noreferrer" target="_blank" aria-label="Link to Facebook">
+              <svg width="28" height="28">
+                <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://www.instagram.com/goitclub/" rel="noopener noreferrer" target="_blank" aria-label="Link to Instagram">
+              <svg width="28" height="28">
+                <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://www.youtube.com/c/GoIT" rel="noopener noreferrer" target="_blank" aria-label="Link to Youtube">
+              <svg width="28" height="28">
+                <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#youtube"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <button type="button" class="menu-btn" onclick="openMenu()">
+            <svg width="32" height="32">
+              <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#burger-menu"></use>
+            </svg>
+          </button>
+      </nav>
+    </div>
+  </header>
+      <script src="./js/header.js"></script>
+      <div id="backdrop" class="backdrop" onclick="closeMenu()">
+    <div class="mobile-menu" onclick="menuLayoutClickHandler(event)">
+      <div class="btn-menu-wrap">
+        <button
+          type="button"
+          onclick="closeMenu()"
+          class="menu-close-button"
+          aria-label="Close mobile menu button"
+        >
+          <svg class="menu-close-icon" width="32" height="32">
+            <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#x-menu"></use>
+          </svg>
+        </button>
+      </div>
+      <ul class="menu-items">
+        <li class="menu-item" onclick="closeMenu()">
+          <a href="./index.html">Home</a>
+        </li>
+        <li class="menu-item" onclick="closeMenu()">
+          <a href="./favorites.html">Favorites</a>
+        </li>
+      </ul>
+  
+      <ul class="socials">
+        <li class="social-item">
+          <a
+            href="https://www.facebook.com/goITclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Link to Facebook"
+          >
+            <svg class="social-icon" width="26" height="26">
+              <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#facebook"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="social-item">
+          <a
+            href="https://www.instagram.com/goitclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Link to Instagram"
+          >
+            <svg class="social-icon" width="26" height="26">
+              <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#instagram"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="social-item">
+          <a
+            href="https://www.youtube.com/c/GoIT"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Link to Youtube"
+          >
+            <svg class="social-icon" width="26" height="26">
+              <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#youtube"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+      <section class="hero-section">
+  <div class="container">
+    <div class="hero-text-wrapper">
+      <div class="hero-box">
+        <h1 class="hero-title">
+          Get <span class="accent">Body</span> in <br />
+          shape, Stay healthy
+        </h1>
+        <p class="hero-text">
+          Transform your physique and embrace a healthier lifestyle with our
+          comprehensive fitness and nutrition support.
+        </p>
+      </div>
+      <div class="hero-container-desktop">
+        <!-- Content image with Retina display support -->
+        <img
+          src="data:image/webp;base64,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"
+          srcset="/desperate-pancakes-development/assets/girls-doing-fitness-together-outdoors@2x-D9-hYQ01.webp 2x"
+          alt="Close-up of two girls balancing on one leg outdoors, touching the soles of their feet together on a yoga mat"
+          class="hero-tags-image"
+          loading="lazy"
+        />
+
+        <ul class="hero-tags-desktop">
+          <li class="hero-tag-desktop">#Sport</li>
+          <li class="hero-tag-desktop">#Healthy</li>
+          <li class="hero-tag-desktop">#Workout</li>
+          <li class="hero-tag-desktop">#Diet</li>
+        </ul>
+      </div>
+    </div>
+    <picture>
+      <source
+        srcset="/desperate-pancakes-development/assets/girls-outdoors-working-out-desk@1x-CKNXDil3.webp, /desperate-pancakes-development/assets/girls-outdoors-working-out-desk@2x-DSV_Y8EF.webp 2x"
+        media="(min-width: 1440px)"
+        width="1376"
+        height="350"
+        loading="lazy"
+      />
+      <source
+        srcset="/desperate-pancakes-development/assets/girls-outdoors-working-out-tablet@1x-Bb__q6Wl.webp, /desperate-pancakes-development/assets/girls-outdoors-working-out-tablet@2x--_SBA5M5.webp 2x"
+        media="(min-width: 768px)"
+        width="704"
+        height="550"
+        loading="lazy"
+      />
+      <source
+        srcset="/desperate-pancakes-development/assets/girls-outdoors-working-out-mob@1x-BfiWFGYC.webp, /desperate-pancakes-development/assets/girls-outdoors-working-out-mob@2x-BocOlS40.webp 2x"
+        media="(max-width: 767px)"
+        width="335"
+        height="460"
+        loading="lazy"
+      />
+      <img
+        src="/desperate-pancakes-development/assets/girls-outdoors-working-out-mob@1x-BfiWFGYC.webp"
+        srcset="/desperate-pancakes-development/assets/girls-outdoors-working-out-mob@2x-BocOlS40.webp 2x"
+        alt="Two girls exercising outdoors near a lake, facing each other in a plank position, and giving a high-five with smiles on their faces"
+        class="hero-image"
+        loading="lazy"
+      />
+    </picture>
+    <ul class="hero-tags">
+      <li class="hero-tag">#Sport</li>
+      <li class="hero-tag">#Healthy</li>
+      <li class="hero-tag">#Workout</li>
+      <li class="hero-tag">#Diet</li>
+    </ul>
+  </div>
+</section>
+
+      <div class='modal-overlay'>
+  <div class='modal exercise'>
+    <button class='modal-close-button' type='button'>
+      <svg class='modal-close-icon'>
+        <use href='../images/modal-window-sprite.svg#icon-close-white'></use>
+      </svg>
+    </button>
+    <div class='modal-container'>
+      <div class='modal-image'>
+        <img class='modal-image-gif' src='../images/gif.jpg' alt='exercise-preview' width='295'>
+      </div>
+      <div class='modal-info'>
+        <p class='modal-info-name'></p>
+        <div class='modal-info-rating'>
+          <p class='modal-info-rating-score'></p>
+          <div class='modal-info-rating-stars'>
+          </div>
+          <div class='modal-info-rating-stars-filled'></div>
+        </div>
+        <div class='modal-info-targets'>
+          <ul class='modal-info-targets-list'>
+          </ul>
+        </div>
+        <div class='modal-info-description'></div>
+        <div class='modal-info-buttons'>
+          <button type='button' class='add-to-favorites'>
+          </button>
+          <button type='button' class='give-a-rating'>Give a rating</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='modal rating hide-window'>
+    <button class='modal-close-rating-button' type='button'>
+      <svg class='modal-close-icon'>
+        <use href='../images/modal-window-sprite.svg#icon-close-white'></use>
+      </svg>
+    </button>
+    <div class='modal-container'>
+      <div class='modal-info'>
+        <p class='modal-info-name'>Rating</p>
+        <div class='modal-rating-block'>
+          <div class='modal-rating-block-score'>
+            <p class='modal-rating-block-score-value'>0.0</p>
+            <div class='radio-group'>
+              <input type='radio' id='option1' name='custom-radio' value='1' class='custom-radio-star'>
+              <label for='option1' class='radio-label'>
+                <svg class='radio-group-star' width='20' height='19'>
+                  <use href='../images/modal-window-sprite.svg#icon-rating-star'></use>
+                </svg>
+              </label>
+
+              <input type='radio' id='option2' name='custom-radio' value='2' class='custom-radio-star'>
+              <label for='option2' class='radio-label'>
+                <svg class='radio-group-star' width='20' height='19'>
+                  <use href='../images/modal-window-sprite.svg#icon-rating-star'></use>
+                </svg>
+              </label>
+
+              <input type='radio' id='option3' name='custom-radio' value='3' class='custom-radio-star'>
+              <label for='option3' class='radio-label'>
+                <svg class='radio-group-star' width='20' height='19'>
+                  <use href='../images/modal-window-sprite.svg#icon-rating-star'></use>
+                </svg>
+              </label>
+
+              <input type='radio' id='option4' name='custom-radio' value='4' class='custom-radio-star'>
+              <label for='option4' class='radio-label'>
+                <svg class='radio-group-star' width='20' height='19'>
+                  <use href='../images/modal-window-sprite.svg#icon-rating-star'></use>
+                </svg>
+              </label>
+
+              <input type='radio' id='option5' name='custom-radio' value='5' class='custom-radio-star'>
+              <label for='option5' class='radio-label'>
+                <svg class='radio-group-star' width='20' height='19'>
+                  <use href='../images/modal-window-sprite.svg#icon-rating-star'></use>
+                </svg>
+              </label>
+            </div>
+          </div>
+          <form id='userForm'>
+            <div class='modal-form-container'>
+              <div class='modal-input-container'>
+                <input type='email' name='email' class='modal-input-name' placeholder='Email' aria-label='Email'
+                       id='email' />
+              </div>
+            </div>
+            <div class='modal-input-container comment'>
+              <textarea name='review' class='modal-input-comment' placeholder='Comment' aria-label='Comment'
+                        id='review'></textarea>
+            </div>
+            <div class='modal-error-label-text'></div>
+            <button class='modal-form-button' type='submit'>
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="main-section container">
+        <h2 class="main-section-title">Exercises <span class="slash">/ </span><span class="current-category"></span></h2>
+        <div class="exercises">
+          <div class="categories-wrapper">
+    <div class="filters-container">
+      <div class="search-container">
+  <input
+    type="text"
+    class="search-input"
+    id="searchInput"
+    placeholder="Search"
+    aria-label="Search exercises"
+  />
+  <button class="search-button" id="searchButton" aria-label="Search">
+    <svg
+      class="search-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#111"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="16" y1="16" x2="22" y2="22"></line>
+    </svg>
+  </button>
+</div>
+      <ul class="categories-btns-list">
+        <li class="categories-btns-item">
+          <button class="category-btn active" type="button" data-action="Muscles">
+            Muscles
+          </button>
+        </li>
+        <li class="categories-btns-item">
+          <button class="category-btn" type="button" data-action="Body parts">
+            Body parts
+          </button>
+        </li>
+        <li class="categories-btns-item">
+          <button class="category-btn" type="button" data-action="Equipment">
+            Equipment
+          </button>
+        </li>
+      </ul>
+    </div>
+  <div class="cards-wrapper">
+    <ul class="categories-cards-list"></ul>
+    <ul class="exercises-list"></ul>
+  </div>
+  <div id="pagination" class="pagination"></div>
+</div>
+
+          <div class="quote-container">
+  <div class="quote-card">
+    <div class="quote-left-icon">
+      <svg class="quote-icon" width="18" height="20">
+        <use href="../images/icons.svg#runn-man"></use>
+      </svg>
+    </div>
+    <div class="quote-content">
+      <p class="quote-title">
+        Quote of the day
+        <svg class="quote-icon quote-right-icon" width="20" height="20">
+          <use href="../images/icons.svg#quote"></use>
+        </svg>
+      </p>
+
+      <p class="quote-text">
+        A lot of times I find that people who are blessed with the most talent
+        don't ever develop that attitude, and the ones who aren't blessed in
+        that way are the most competitive and have the biggest heart.
+      </p>
+      <p class="quote-author">Tom Brady</p>
+    </div>
+  </div>
+  <div class="image-wrapper">
+    <img
+      src="../images/drinking-girls.webp"
+      srcset="../images/drinking-girls@2x.webp"
+      alt="Women sportswear"
+      class="motivation-image"
+    />
+  </div>
+  <div class="goal-card">
+    <div class="goal-icon">
+      <svg class="icon-target" width="20" height="20">
+        <use href="../images/icons.svg#gauntlets"></use>
+      </svg>
+    </div>
+    <div class="goal-content">
+      <p class="goal-text">110 min</p>
+      <p class="goal-title">Daily norm of sports</p>
+      <p class="goal-description">
+        The World Health Organization recommends at least 150 minutes of
+        moderate-intensity aerobic physical activity throughout the week for
+        adults aged 18-64. However, what happens if we adjust that number to 110
+        minutes every day? While it might seem like a high number to hit,
+        dedicating 110 minutes daily to sporting activities may offer
+        unparalleled benefits to physical health, mental well-being, and overall
+        quality of life.
+      </p>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+
+    <!-- footer  -->
+     <footer class="footer">
+  <div class="footer-container container">
+    <div class="footer-content">
+      <div class="footer-icons extra">
+        <a class="footer-logo" href="./" aria-label="Your Energy Home Page">
+          <svg
+            class="footer-logo-icon"
+            height="24"
+            width="132"
+            role="img"
+            aria-hidden="true"
+          >
+            <use href="../images/icons.svg#logo"></use>
+          </svg>
+        </a>
+        <ul class="footer-socials-list">
+          <ul class="social-list">
+    <li class="social-item">
+      <a
+        class="social-link"
+        href="https://www.facebook.com/goITclub/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Link to Facebook site"
+      >
+        <svg class="social-icon" width="28" height="28">
+          <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#facebook"></use>
+        </svg>
+      </a>
+    </li>
+    <li class="social-item">
+      <a
+        class="social-link"
+        href="https://www.instagram.com/goitclub/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Link to Instagram site"
+      >
+        <svg class="social-icon" width="28" height="28">
+          <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#instagram"></use>
+        </svg>
+      </a>
+    </li>
+    <li class="social-item">
+      <a
+        class="social-link"
+        href="https://www.youtube.com/c/GoIT"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Link to YouTube site"
+      >
+        <svg class="social-icon" width="28" height="28">
+          <use href="/desperate-pancakes-development/assets/icons-D0JUX4go.svg#youtube"></use>
+        </svg>
+      </a>
+    </li>
+  </ul>
+  
+        </ul>
+      </div>
+      <div class="footer-text extra">
+        <p>Transforming your <em>body</em> shape with us</p>
+      </div>
+      <div class="footer-subscribe">
+        <p class="footer-subscribe-text">
+          Subscribe and learn about new exercises!
+        </p>
+        <form class="footer-form">
+          <input
+            class="footer-form-input"
+            placeholder="Email"
+            name="email"
+            autocomplete="email"
+            required
+            pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+            title="Please enter a valid email address (e.g., user@example.com)"
+          />
+          <button class="footer-button" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">
+        <p>Your Energy. All rights reserved.</p>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <p>/</p>
+        <a href="#">Terms of Service</a>
+      </div>
+      <div class="footer-copyright">
+        <p>©2023</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- scroll button -->
+    <button class="scroll-to-top" aria-label="Scroll to top">
+    <svg width="13.2" height="13.2" viewBox="0 0 32 32">
+        <path fill="#f4f4f4" style="fill: var(--color1, #f4f4f4)" d="M17.619 5.478v25.528h-2.716v-25.528l-12.764 12.764-1.92-1.921 16.042-16.042 16.043 16.042-1.92 1.921-12.764-12.764z"></path>
+    </svg>
+</button>
+    <script src="./js/scroll-btn.js"></script>
+
+  </body>
+</html>
