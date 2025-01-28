@@ -7,6 +7,7 @@ export let name;
 let isExercisesListDisplay = false;
 
 window.onload = () => {
+  consoke.log('Hello, world!!')
   isExercisesListDisplay = false;
 
   const limit = getLimitForRequest('categories');
