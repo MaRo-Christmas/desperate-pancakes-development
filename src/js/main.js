@@ -8,3 +8,4 @@ import './category/categories-list.js';
 import './scroll-btn.js';
 import './header.js';
 import './modal-window.js';
+console.log('Hello, world!');
