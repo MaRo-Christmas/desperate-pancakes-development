@@ -13,4 +13,6 @@
 
   --anim-duration: 250ms;
   --anim-timing-function: cubic-bezier(.4, 0, .2, 1);
+  
+  --transition-dur-and-func: 750ms cubic-bezier(0.4, 0, 0.2, 1);
 }
