@@ -10,4 +10,4 @@ import{i as B,a as $}from"./vendor-CQpva9gi.js";(function(){const e=document.cre
     <p class='modal-info-targets-list-item-container-subtitle'>${i[r].subtitle}</p>
     </div>
   </li>`).join(""),Q.innerHTML=`<p>${n.description}</p>`,c.classList.add("is-open")}}function Y(){window.scrollTo({top:0,behavior:"smooth"})}const u=document.querySelector(".scroll-to-top");u?(window.addEventListener("scroll",()=>{window.scrollY>200?u.classList.add("show"):u.classList.remove("show")}),u.addEventListener("click",Y)):console.error("Scroll-to-top button not found.");export{oe as h,te as i};
-//# sourceMappingURL=scroll-btn-CASHhAMA.js.map
+//# sourceMappingURL=scroll-btn-D9WJ9Zll.js.map
