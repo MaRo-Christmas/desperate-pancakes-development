@@ -51,7 +51,7 @@
     height: 550px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1440px) {
     width: 1376px;
     height: 350px;
   }
@@ -125,7 +125,7 @@
 }
 
 /* Desktop */
-@media (min-width: 1200px) {
+@media (min-width: 1440px) {
   .hero-text-wrapper {
     display: flex;
     justify-content: space-between;
