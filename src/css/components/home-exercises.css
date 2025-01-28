@@ -130,6 +130,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 20px;
 }
 
 .pagination-item {
@@ -185,6 +186,10 @@
   .exercises-list {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .pagination {
+    margin-top: 32px;
   }
 }
 
