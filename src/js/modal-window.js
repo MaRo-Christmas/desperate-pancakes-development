@@ -1,5 +1,7 @@
 import axios from 'axios';
 import icons from '../images/modal-window-sprite.svg';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
 let currentExerciseId = null;
@@ -110,6 +112,11 @@ function toggleFromFavorites(id) {
                         <svg class='add-to-favorites-icon'>
                             <use href='${icons}#icon-trash'></use>
                         </svg>`;
+    iziToast.success({
+      title: 'Success',
+      position: 'topRight',
+      message: 'Exercise successfully added to favorites !',
+    });
   } else {
     removeFromFavorites = false;
     addToFavorites.innerHTML = `Add to favorites
